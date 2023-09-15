@@ -1,0 +1,43 @@
+﻿@page "/somethingone"
+@using Hiragana1.Shared;
+@inject HttpClient Http
+
+<PageTitle>SomethingOne</PageTitle>
+
+<button @onclick="SomethingHappens">@InitialButtonMessage</button>
+
+@if (question == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h3>@question.Question</h3>
+    @foreach (var a in question.Answers)
+    {
+        <button class="btn">@a</button>
+    }
+}
+
+<br />
+<br />
+@code {
+    private QuestionV1? question;
+
+    protected override async Task OnInitializedAsync()
+    {
+        question = await Http.GetFromJsonAsync<QuestionV1>("QuestionV1");
+        var i = 1;
+    }
+
+    private void SomethingHappens()
+    {
+        InitialButtonMessage += this.IncrementByMessagePart;
+    }
+
+    [Parameter]
+    public string InitialButtonMessage { get; set; } = "empty";
+
+    [Parameter]
+    public string IncrementByMessagePart { get; set; } = ".";
+}
