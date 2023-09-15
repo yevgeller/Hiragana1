@@ -13,10 +13,15 @@
 else
 {
     <h3>@question.Question</h3>
-    @foreach (var a in question.Answers)
-    {
-        <button class="btn">@a</button>
-    }
+
+
+
+    <div class="d-flex flex-row">
+        @foreach (var a in question.Answers)
+        {
+            <div class="p-2"><button class="btn btn-secondary">@a</button></div>
+        }
+    </div>
 }
 
 <br />
@@ -27,7 +32,6 @@ else
     protected override async Task OnInitializedAsync()
     {
         question = await Http.GetFromJsonAsync<QuestionV1>("QuestionV1");
-        var i = 1;
     }
 
     private void SomethingHappens()
@@ -41,3 +45,4 @@ else
     [Parameter]
     public string IncrementByMessagePart { get; set; } = ".";
 }
+
