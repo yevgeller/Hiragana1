@@ -3,18 +3,20 @@
 <h3>Current Test</h3>
 
 <div>If no test in progress</div>
-
-<button class="btn btn-primary" @onclick="StartNewTest">Start Test</button>
-
-<div>else</div>
-
-<div>Display a question</div>
-
+@if (this.IsTestInProgress == false)
+{
+    <button class="btn btn-primary" @onclick="StartNewTest">Start Test</button>
+}
+else
+{
+    <div>Display a question</div>
+}
 @code {
+    public bool IsTestInProgress { get; set; } = false;
 
     public void StartNewTest()
     {
-        
+        this.IsTestInProgress = true;
     }
 
 }
