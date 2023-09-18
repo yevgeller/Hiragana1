@@ -46,5 +46,11 @@ namespace Hiragana1.Server.Controllers
 
             return list.First();
         }
+
+        [HttpGet("list")]
+        public IEnumerable<QuestionV1> GetList()
+        {
+            return list;
+        }
     }
 }

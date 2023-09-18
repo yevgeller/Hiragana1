@@ -1,4 +1,6 @@
 ﻿@page "/currenttest"
+@using Hiragana1.Shared;
+@inject HttpClient Http
 
 <h3>Current Test</h3>
 
@@ -14,9 +16,14 @@ else
 @code {
     public bool IsTestInProgress { get; set; } = false;
 
-    public void StartNewTest()
+    public async void StartNewTest()
     {
+       var questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/list");
+    
+
         this.IsTestInProgress = true;
+        //get question set
+        //assign it to the testing control
     }
 
 }
