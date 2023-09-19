@@ -12,13 +12,15 @@
 else
 {
     <div>Display a question</div>
+    <AnswerableTestQuestion TestQuestion="CurrentTestQuestion"></AnswerableTestQuestion>
 }
 @code {
     public bool IsTestInProgress { get; set; } = false;
+    public QuestionV1 CurrentTestQuestion { get; set; } = new QuestionV1();
 
     public async void StartNewTest()
     {
-       var questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/list");
+        var questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest");
     
 
         this.IsTestInProgress = true;
