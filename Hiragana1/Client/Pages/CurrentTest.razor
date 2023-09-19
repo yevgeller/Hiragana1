@@ -5,26 +5,33 @@
 <h3>Current Test</h3>
 
 <div>If no test in progress</div>
-@if (this.IsTestInProgress == false)
+@if (currentQuestion == null || currentQuestion.QuestionId < 1)
 {
     <button class="btn btn-primary" @onclick="StartNewTest">Start Test</button>
 }
-else
+else if (currentQuestion != null)
 {
     <div>Display a question</div>
-    <AnswerableTestQuestion TestQuestion="CurrentTestQuestion"></AnswerableTestQuestion>
+    <AnswerableTestQuestion TestQuestion="currentQuestion"></AnswerableTestQuestion>
 }
 @code {
     public bool IsTestInProgress { get; set; } = false;
     public QuestionV1 CurrentTestQuestion { get; set; } = new QuestionV1();
 
+    QuestionV1 currentQuestion;
+
+    QuestionV1[] questions;
+
+
     public async void StartNewTest()
     {
-        var questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest");
+        questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest");
 
         if (questions.Any())
         {
             CurrentTestQuestion = questions.OrderBy(x => x.QuestionId).First();
+            currentQuestion = questions.OrderBy(x => x.QuestionId).First();
+            StateHasChanged();
         } else
         {
             throw new Exception("No questions returned from Controller");
