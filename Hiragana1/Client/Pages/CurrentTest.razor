@@ -5,11 +5,15 @@
 <h3>Current Test</h3>
 
 <div>If no test in progress</div>
+<ul>
+    <li>Fix button display</li>
+    <li>Wire up correct/incorrect event</li>
+</ul>
 @if (currentQuestion == null || currentQuestion.QuestionId < 1)
 {
     <button class="btn btn-primary" @onclick="StartNewTest">Start Test</button>
 }
-else if (currentQuestion != null)
+@if (currentQuestion != null)
 {
     <div>Display a question</div>
     <AnswerableTestQuestion TestQuestion="currentQuestion"></AnswerableTestQuestion>
