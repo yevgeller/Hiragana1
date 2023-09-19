@@ -11,28 +11,33 @@ namespace Hiragana1.Server.Controllers
 
         private List<QuestionV1> list = new List<QuestionV1> {
              new QuestionV1 {
+                 QuestionId = 1,
                 Answers = new[] { "one", "two", "three", "four" }.ToList(),
                 CorrectAnswer = "one",
                 Question = "ichi"
             },
  new QuestionV1 {
+     QuestionId = 2,
                 Answers = new[] { "one", "two", "three", "four" }.ToList(),
                 CorrectAnswer = "two",
                 Question = "ni"
             }, new QuestionV1 {
+                QuestionId = 3,
                 Answers = new[] { "one", "two", "three", "four" }.ToList(),
                 CorrectAnswer = "three",
                 Question = "ichi"
             }, new QuestionV1 {
+                QuestionId = 4,
                 Answers = new[] { "one", "two", "three", "four" }.ToList(),
                 CorrectAnswer = "one",
                 Question = "ichi"
             }, new QuestionV1 {
+                QuestionId = 5,
                 Answers = new[] { "one", "two", "three", "four" }.ToList(),
                 CorrectAnswer = "one",
                 Question = "ichi"
             }
-            };
+        };
 
         public QuestionV1Controller(ILogger<QuestionV1Controller> logger)
         {

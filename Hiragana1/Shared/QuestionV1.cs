@@ -8,6 +8,7 @@ namespace Hiragana1.Shared
 {
     public class QuestionV1
     {
+        public int QuestionId { get; set; } = 0;
         public string Question { get; set; } = "?";
 
         public string CorrectAnswer { get; set; } = "!";

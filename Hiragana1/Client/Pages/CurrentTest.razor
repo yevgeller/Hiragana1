@@ -21,8 +21,14 @@ else
     public async void StartNewTest()
     {
         var questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest");
-    
 
+        if (questions.Any())
+        {
+            CurrentTestQuestion = questions.OrderBy(x => x.QuestionId).First();
+        } else
+        {
+            throw new Exception("No questions returned from Controller");
+        }
         this.IsTestInProgress = true;
         //get question set
         //assign it to the testing control
