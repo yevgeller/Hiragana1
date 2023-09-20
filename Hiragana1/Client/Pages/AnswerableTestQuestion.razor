@@ -8,26 +8,45 @@
 else
 {
     <h3>@TestQuestion.Question</h3>
-
+    <h2>@somethingHere</h2>
     <div class="d-flex flex-row">
         @foreach (var a in TestQuestion.Answers.Take(2))
         {
-            <div class="p-2 answerButton"><button class="btn btn-info answerButton">@a</button></div>
+            <div class="p-2 answerButton"><button class="btn btn-info answerButton" @onclick="Something">@a</button></div>
         }
     </div>
 
     <div class="d-flex flex-row">
         @foreach (var a in TestQuestion.Answers.Skip(2).Take(2))
         {
-            <div class="p-2 answerButton"><button class="btn btn-info answerButton">@a</button></div>
+            <div class="p-2 answerButton"><button class="btn btn-info answerButton" @onclick="@(_=>GetValue(a))">@a</button></div>
         }
     </div>
-}
+    }
 @code {
 
-    [Parameter]
-    public QuestionV1  TestQuestion { get; set; }
+    string defaultValue = "nothing";
+    string somethingHere;
 
+    private void OnInitializedAsync()
+    {
+        this.somethingHere = this.defaultValue;
+    }
+
+    [Parameter]
+    public QuestionV1? TestQuestion { get; set; }
+
+    private void Something() //async Task HandleClick(ChangeEventArgs e)
+    {
+        //var j = e;
+    }
+    private void GetValue(string value)
+    {
+        if (somethingHere == this.defaultValue)
+            somethingHere = value;
+            else 
+        somethingHere += value;
+    }
 }
 
 
