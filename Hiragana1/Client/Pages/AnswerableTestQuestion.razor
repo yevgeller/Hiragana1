@@ -12,7 +12,7 @@ else
     <div class="d-flex flex-row">
         @foreach (var a in TestQuestion.Answers.Take(2))
         {
-            <div class="p-2 answerButton"><button class="btn btn-info answerButton" @onclick="@(_=>GetValue(a))">@a</button></div>
+            <div class="p-2 answerButton"><button class="btn btn-info answerButton" @onclick="@(_=>CompareAnswer(a))">@a</button></div>
         }
     </div>
 
