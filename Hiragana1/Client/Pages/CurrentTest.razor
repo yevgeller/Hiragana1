@@ -18,22 +18,28 @@
     <div>Display a question</div>
     <AnswerableTestQuestion TestQuestion="currentQuestion" OnAnswer="AnswerHappened"></AnswerableTestQuestion>
 }
+@if (testOver)
+{
+    <h2>Test is Over!</h2>
+}
+
 @code {
     public bool IsTestInProgress { get; set; } = false;
-
+    public bool testOver = false;
     QuestionV1 currentQuestion;
 
     QuestionV1[] questions;
 
     public async void StartNewTest()
     {
+        testOver = false;
         questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest");
 
         if (questions.Any())
         {
             // CurrentTestQuestion = questions.OrderBy(x => x.QuestionId).First();
             currentQuestion = questions.OrderBy(x => x.QuestionId).First();
-             StateHasChanged();
+            StateHasChanged();
         } else
         {
             throw new Exception("No questions returned from Controller");
@@ -43,7 +49,15 @@
 
     private void AnswerHappened(bool isCorrect)
     {
-        var j = isCorrect;
+        //var j = isCorrect;
+        if(isCorrect)
+        {
+            currentQuestion = questions.Where(q => q.QuestionId > currentQuestion.QuestionId).FirstOrDefault();
+            if(currentQuestion == null)
+            {
+                testOver = true;
+            }
+        }
     }
 
 }
