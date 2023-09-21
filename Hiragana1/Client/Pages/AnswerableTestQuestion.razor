@@ -36,16 +36,21 @@ else
     [Parameter]
     public QuestionV1? TestQuestion { get; set; }
 
+    [Parameter] public EventCallback<bool> OnAnswer { get; set; }
     // private void Something() //async Task HandleClick(ChangeEventArgs e)
     // {
     //     //var j = e;
     // }
-    private void CompareAnswer(string value)
+    private async Task CompareAnswer(string value)
     {
-        if (somethingHere == this.defaultValue)
-            somethingHere = value;
-        else
-            somethingHere += value;
+        bool isCorrectAnswer = string.Compare(value, this.TestQuestion.CorrectAnswer, true) == 0
+
+        if(!isCorrectAnswer)
+        {
+            //disable wrong button
+        }
+
+        await OnAnswer.InvokeAsync(isCorrectAnswer);
     }
 }
 
