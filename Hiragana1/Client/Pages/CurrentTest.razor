@@ -20,12 +20,10 @@
 }
 @code {
     public bool IsTestInProgress { get; set; } = false;
-    // public QuestionV1 CurrentTestQuestion { get; set; } = new QuestionV1();
 
     QuestionV1 currentQuestion;
 
     QuestionV1[] questions;
-
 
     public async void StartNewTest()
     {
@@ -35,14 +33,12 @@
         {
             // CurrentTestQuestion = questions.OrderBy(x => x.QuestionId).First();
             currentQuestion = questions.OrderBy(x => x.QuestionId).First();
-            StateHasChanged();
+             StateHasChanged();
         } else
         {
             throw new Exception("No questions returned from Controller");
         }
-        this.IsTestInProgress = true;
-        //get question set
-        //assign it to the testing control
+        this.IsTestInProgress = true;       
     }
 
     private void AnswerHappened(bool isCorrect)
