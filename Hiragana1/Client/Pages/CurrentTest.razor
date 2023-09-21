@@ -16,7 +16,7 @@
 @if (currentQuestion != null)
 {
     <div>Display a question</div>
-    <AnswerableTestQuestion TestQuestion="currentQuestion"></AnswerableTestQuestion>
+    <AnswerableTestQuestion TestQuestion="currentQuestion" OnAnswer="AnswerHappened"></AnswerableTestQuestion>
 }
 @code {
     public bool IsTestInProgress { get; set; } = false;
@@ -43,6 +43,11 @@
         this.IsTestInProgress = true;
         //get question set
         //assign it to the testing control
+    }
+
+    private void AnswerHappened(bool isCorrect)
+    {
+        var j = isCorrect;
     }
 
 }

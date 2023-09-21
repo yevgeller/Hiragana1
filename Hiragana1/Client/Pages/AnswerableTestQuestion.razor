@@ -37,13 +37,10 @@ else
     public QuestionV1? TestQuestion { get; set; }
 
     [Parameter] public EventCallback<bool> OnAnswer { get; set; }
-    // private void Something() //async Task HandleClick(ChangeEventArgs e)
-    // {
-    //     //var j = e;
-    // }
+
     private async Task CompareAnswer(string value)
     {
-        bool isCorrectAnswer = string.Compare(value, this.TestQuestion.CorrectAnswer, true) == 0
+        bool isCorrectAnswer = string.Compare(value, this.TestQuestion.CorrectAnswer, true) == 0;
 
         if(!isCorrectAnswer)
         {
