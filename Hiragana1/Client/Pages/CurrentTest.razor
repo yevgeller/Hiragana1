@@ -20,7 +20,7 @@
 }
 @code {
     public bool IsTestInProgress { get; set; } = false;
-    public QuestionV1 CurrentTestQuestion { get; set; } = new QuestionV1();
+    // public QuestionV1 CurrentTestQuestion { get; set; } = new QuestionV1();
 
     QuestionV1 currentQuestion;
 
@@ -33,7 +33,7 @@
 
         if (questions.Any())
         {
-            CurrentTestQuestion = questions.OrderBy(x => x.QuestionId).First();
+            // CurrentTestQuestion = questions.OrderBy(x => x.QuestionId).First();
             currentQuestion = questions.OrderBy(x => x.QuestionId).First();
             StateHasChanged();
         } else
