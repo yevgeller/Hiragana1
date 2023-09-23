@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Hiragana1\Shared\Hiragana1.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
