@@ -48,5 +48,9 @@ string hiragana = "あ い う え お か が き ぎ く ぐ け げ こ ご �
 
             return new List<QuestionV1>();
         }
+
+        public List<QuestionV1> GetNewTest2(QuestionType testType, int numberOfQuestions) {
+            return new List<QuestionV1>();
+        }
     }
 }
