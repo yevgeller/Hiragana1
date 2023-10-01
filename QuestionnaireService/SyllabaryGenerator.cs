@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -95,6 +96,33 @@ namespace QuestionnaireService
             //result.Add(new SyllabaryCharacter { Hiragana = "わ", Katakana = "ワ", Transliteration = "" });
             //result.Add(new SyllabaryCharacter { Hiragana = "を", Katakana = "ヲ", Transliteration = "" }); 
             //result.Add(new SyllabaryCharacter { Hiragana = "ん", Katakana = "ン", Transliteration = "" });
+            return result;
+        }
+
+        public static List<string> AllKatakanaCharacters()
+        {
+            var syllabary = SyllabaryGenerator.GetSyllabaryCharacters();
+
+            var result = syllabary.Select(x=>x.Katakana).ToList();
+
+            return result;
+        }
+
+        public static List<string> AllHiraganaCharacters()
+        {
+            var syllabary = SyllabaryGenerator.GetSyllabaryCharacters();
+
+            var result = syllabary.Select(x => x.Hiragana).ToList();
+
+            return result;
+        }
+
+        public static List<string> AllHiraganaCharacters()
+        {
+            var syllabary = SyllabaryGenerator.GetSyllabaryCharacters();
+
+            var result = syllabary.Select(x => x.Hiragana).ToList();
+
             return result;
         }
     }

@@ -111,6 +111,7 @@ var result = new List<QuestionV1>();
             {
                 case QuestionType.EnglishToHiragana:
                     q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Hiragana };
+                    
                     break;
                 case QuestionType.EnglishToKatakana:
                     q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Katakana };
@@ -132,13 +133,7 @@ var result = new List<QuestionV1>();
                     break;
             }
 
-            //if(remainingQuestions.Any())
-            //{
-            //    Random rnd = new Random();
-            //    return remainingQuestions[rnd.Next(remainingQuestions.Count())]
-            //}
-            var result = new QuestionV1();
-            return result;
+            
         }
     }
 }
