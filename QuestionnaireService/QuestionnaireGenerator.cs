@@ -64,7 +64,48 @@ var result = new List<QuestionV1>();
 
         private QuestionV1 GetNexQuestion(QuestionType questionType, List<string> existingQuestions)
         {
+            var remainingQuestions = SyllabaryGenerator
+                .GetSyllabaryCharacters();
 
+            //    EnglishToHiragana = 0,
+            //EnglishToKatakana,
+            //HiraganaToEnglish,
+            //KatakanaToEnglish,
+            //HiraganaToKatakana,
+            //KatakanaToHiragana,
+            //Random
+            QuestionV1 q = new QuestionV1();
+            Random rnd = new Random();
+
+            switch (questionType)
+            {
+                case QuestionType.EnglishToHiragana:
+                case QuestionType.EnglishToKatakana:
+                    remainingQuestions = remainingQuestions
+                        .Where(x => !existingQuestions.Contains(x.Transliteration))
+                        .ToList();                   
+                    break;
+                case QuestionType.HiraganaToEnglish:
+                case QuestionType.HiraganaToKatakana:
+                    remainingQuestions = remainingQuestions
+                        .Where(x => !existingQuestions.Contains(x.Hiragana))
+                        .ToList();
+                    break;
+                case QuestionType.KatakanaToEnglish:
+                case QuestionType.KatakanaToHiragana:
+                    remainingQuestions = remainingQuestions
+                        .Where(x => !existingQuestions.Contains(x.Katakana))
+                        .ToList();
+                    break;
+                default:
+                    break;
+            }
+
+            //if(remainingQuestions.Any())
+            //{
+            //    Random rnd = new Random();
+            //    return remainingQuestions[rnd.Next(remainingQuestions.Count())]
+            //}
             var result = new QuestionV1();
             return result;
         }
