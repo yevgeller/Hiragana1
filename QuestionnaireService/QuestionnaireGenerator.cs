@@ -110,13 +110,25 @@ var result = new List<QuestionV1>();
             switch (questionType)
             {
                 case QuestionType.EnglishToHiragana:
-
-                case QuestionType.EnglishToKatakana:                    
+                    q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Hiragana };
+                    break;
+                case QuestionType.EnglishToKatakana:
+                    q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Katakana };
+                    break;
                 case QuestionType.HiraganaToEnglish:
+                    q = new QuestionV1 { QuestionType = questionType, Question = ch.Hiragana, CorrectAnswer = ch.Transliteration };
+                    break;
                 case QuestionType.HiraganaToKatakana:
+                    q = new QuestionV1 { QuestionType = questionType, Question = ch.Hiragana, CorrectAnswer = ch.Katakana };
+                    break;
                 case QuestionType.KatakanaToEnglish:
+                    q = new QuestionV1 { QuestionType = questionType, Question = ch.Katakana, CorrectAnswer = ch.Transliteration };
+                    break;
                 case QuestionType.KatakanaToHiragana:
+                    q = new QuestionV1 { QuestionType = questionType, Question = ch.Katakana, CorrectAnswer = ch.Hiragana };
+                    break;
                 default:
+                    q = new QuestionV1 { QuestionType = questionType, Question = ch.Hiragana, CorrectAnswer = ch.Katakana };
                     break;
             }
 
