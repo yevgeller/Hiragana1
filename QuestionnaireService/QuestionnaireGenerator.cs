@@ -97,6 +97,25 @@ var result = new List<QuestionV1>();
                         .Where(x => !existingQuestions.Contains(x.Katakana))
                         .ToList();
                     break;
+                default: //Random
+                    break;
+            }
+
+            if(!remainingQuestions.Any()) {
+                throw new Exception("no questions found");
+            }
+
+            SyllabaryCharacter ch = remainingQuestions[rnd.Next(remainingQuestions.Count)];
+
+            switch (questionType)
+            {
+                case QuestionType.EnglishToHiragana:
+
+                case QuestionType.EnglishToKatakana:                    
+                case QuestionType.HiraganaToEnglish:
+                case QuestionType.HiraganaToKatakana:
+                case QuestionType.KatakanaToEnglish:
+                case QuestionType.KatakanaToHiragana:
                 default:
                     break;
             }
