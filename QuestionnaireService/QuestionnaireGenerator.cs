@@ -50,6 +50,15 @@ string hiragana = "あ い う え お か が き ぎ く ぐ け げ こ ご �
         }
 
         public List<QuestionV1> GetNewTest2(QuestionType testType, int numberOfQuestions) {
+var result = new List<QuestionV1>();
+            var remaining = numberOfQuestions;
+
+            while (remaining > 0) {
+                //get next question
+
+                remaining--;
+            }
+
             return new List<QuestionV1>();
         }
     }
