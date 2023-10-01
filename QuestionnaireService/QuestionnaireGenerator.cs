@@ -55,11 +55,18 @@ var result = new List<QuestionV1>();
 
             while (remaining > 0) {
                 //get next question
-
+                //List<QuestionV1> questionCandidates = SyllabaryGenerator.GetSyllabaryCharacters().Where(x=>!)
                 remaining--;
             }
 
             return new List<QuestionV1>();
+        }
+
+        private QuestionV1 GetNexQuestion(QuestionType questionType, List<string> existingQuestions)
+        {
+
+            var result = new QuestionV1();
+            return result;
         }
     }
 }
