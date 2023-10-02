@@ -117,11 +117,11 @@ namespace QuestionnaireService
             return result;
         }
 
-        public static List<string> AllHiraganaCharacters()
+        public static List<string> AllTransliterationCharacters()
         {
             var syllabary = SyllabaryGenerator.GetSyllabaryCharacters();
 
-            var result = syllabary.Select(x => x.Hiragana).ToList();
+            var result = syllabary.Select(x => x.Transliteration).ToList();
 
             return result;
         }
