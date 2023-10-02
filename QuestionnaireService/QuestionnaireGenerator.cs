@@ -63,7 +63,7 @@ var result = new List<QuestionV1>();
             return new List<QuestionV1>();
         }
 
-        private QuestionV1 GetNexQuestion(QuestionType questionType, List<string> existingQuestions)
+        private QuestionV1 GetNextQuestion(QuestionType questionType, List<string> existingQuestions)
         {
             var remainingQuestions = SyllabaryGenerator
                 .GetSyllabaryCharacters();
