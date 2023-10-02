@@ -1,4 +1,5 @@
 ﻿using Hiragana1.Shared;
+using System.Globalization;
 
 namespace QuestionnaireService
 {
@@ -77,6 +78,11 @@ var result = new List<QuestionV1>();
             QuestionV1 q = new QuestionV1();
             Random rnd = new Random();
 
+            if(questionType == QuestionType.Random)
+            {
+                q.QuestionType = (QuestionType)rnd.Next(5);
+            }
+            
             switch (questionType)
             {
                 case QuestionType.EnglishToHiragana:
@@ -111,7 +117,10 @@ var result = new List<QuestionV1>();
             {
                 case QuestionType.EnglishToHiragana:
                     q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Hiragana };
-                    
+                    var answerCandidates = SyllabaryGenerator.AllHiraganaCharacters().Where(x => x != ch.Hiragana);
+                    //get X number of questions
+                    //randomly include correct
+                    //Assign to Answers
                     break;
                 case QuestionType.EnglishToKatakana:
                     q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Katakana };
