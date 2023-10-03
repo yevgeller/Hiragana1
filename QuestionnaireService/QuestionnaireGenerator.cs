@@ -63,7 +63,7 @@ var result = new List<QuestionV1>();
             return new List<QuestionV1>();
         }
 
-        private QuestionV1 GetNextQuestion(QuestionType questionType, List<string> existingQuestions)
+        private QuestionV1 GetNextQuestion(QuestionType questionType, List<string> existingQuestions, int numberOfAnswers)
         {
             var remainingQuestions = SyllabaryGenerator
                 .GetSyllabaryCharacters();
@@ -114,6 +114,12 @@ var result = new List<QuestionV1>();
                 case QuestionType.EnglishToHiragana:
                     q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Hiragana };
                     var answerCandidates = SyllabaryGenerator.AllHiraganaCharacters().Where(x => x != ch.Hiragana);
+                    int correctAnswerPosition = rnd.Next(numberOfAnswers);
+                    int remainingAnswers = numberOfAnswers;
+                    while(remainingAnswers > 0)
+                    {
+
+                    }
                     //get X number of questions
                     //randomly include correct
                     //Assign to Answers
