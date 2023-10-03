@@ -75,15 +75,11 @@ var result = new List<QuestionV1>();
             //HiraganaToKatakana,
             //KatakanaToHiragana,
             //Random
-            QuestionV1 q = new QuestionV1();
             Random rnd = new Random();
-
-            if(questionType == QuestionType.Random)
-            {
-                q.QuestionType = (QuestionType)rnd.Next(5);
-            }
+            QuestionV1 q = new QuestionV1();
+            q.QuestionType = questionType == QuestionType.Random ? (QuestionType)rnd.Next(5) : questionType;
             
-            switch (questionType)
+            switch (q.QuestionType)
             {
                 case QuestionType.EnglishToHiragana:
                 case QuestionType.EnglishToKatakana:
@@ -113,7 +109,7 @@ var result = new List<QuestionV1>();
 
             SyllabaryCharacter ch = remainingQuestions[rnd.Next(remainingQuestions.Count)];
 
-            switch (questionType)
+            switch (q.QuestionType)
             {
                 case QuestionType.EnglishToHiragana:
                     q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Hiragana };
