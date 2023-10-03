@@ -118,7 +118,15 @@ var result = new List<QuestionV1>();
                     int remainingAnswers = numberOfAnswers;
                     while(remainingAnswers > 0)
                     {
-
+                        if (remainingAnswers == correctAnswerPosition) 
+                            q.Answers.Add(q.CorrectAnswer);
+                        else
+                        {
+                            var randomSyllable = remainingQuestions[rnd.Next(remainingQuestions.Count)];
+                            remainingQuestions.Remove(randomSyllable);
+                            q.Answers.Add(randomSyllable.Hiragana);
+                        }
+                        remainingAnswers--;
                     }
                     //get X number of questions
                     //randomly include correct
