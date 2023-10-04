@@ -9,6 +9,7 @@ namespace Hiragana1.Server.Controllers
     {
         private readonly ILogger<QuestionV1Controller> logger;
 
+
         private List<QuestionV1> list = new List<QuestionV1> {
              new QuestionV1 {
                  QuestionId = 1,
@@ -55,6 +56,7 @@ namespace Hiragana1.Server.Controllers
         [HttpGet("NewTest")]
         public IEnumerable<QuestionV1> GetList()
         {
+
             return list;
         }
     }
