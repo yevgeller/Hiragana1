@@ -110,29 +110,24 @@ namespace QuestionnaireService
             }
 
             SyllabaryCharacter ch = remainingQuestions[rnd.Next(remainingQuestions.Count)];
-int correctAnswerPosition = rnd.Next(numberOfAnswers-1);
+            int correctAnswerPosition = rnd.Next(numberOfAnswers - 1);
             switch (q.QuestionType)
             {
                 case QuestionnaireType.EnglishToHiragana:
                     q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Hiragana, Answers = new List<string>(numberOfAnswers) };
+                    q.Answers[correctAnswerPosition] = q.CorrectAnswer;
                     var answerCandidates = SyllabaryGenerator.AllHiraganaCharacters().Where(x => x != ch.Hiragana);
-                    
+
                     int remainingAnswers = numberOfAnswers;
-                    while (remainingAnswers > 0)
+                    for (int i = 0; i < q.Answers.Count(); i++)
                     {
-                        if (remainingAnswers == correctAnswerPosition)
-                            q.Answers.Add(q.CorrectAnswer);
-                        else
+                        if (!string.IsNullOrEmpty(q.Answers[i]))
                         {
                             var randomSyllable = remainingQuestions[rnd.Next(remainingQuestions.Count)];
                             remainingQuestions.Remove(randomSyllable);
-                            q.Answers.Add(randomSyllable.Hiragana);
+                            q.Answers[i] = randomSyllable.Hiragana;
                         }
-                        remainingAnswers--;
                     }
-                    //get X number of questions
-                    //randomly include correct
-                    //Assign to Answers
                     break;
                 case QuestionnaireType.EnglishToKatakana:
                     q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Katakana };
