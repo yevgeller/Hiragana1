@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hiragana1.Shared
 {
-    public enum QuestionType
+    public enum QuestionnaireType
     {
         EnglishToHiragana = 0,
         EnglishToKatakana,

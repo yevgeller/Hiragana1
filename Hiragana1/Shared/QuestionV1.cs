@@ -10,7 +10,7 @@ namespace Hiragana1.Shared
     {
         public int QuestionId { get; set; } = 0;
         public string Question { get; set; } = "?";
-        public QuestionType QuestionType { get; set; }
+        public QuestionnaireType QuestionType { get; set; }
         public string CorrectAnswer { get; set; } = "!";
         public List<string> Answers { get; set; } = new List<string>();
     }
