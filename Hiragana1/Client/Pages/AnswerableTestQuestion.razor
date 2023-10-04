@@ -42,9 +42,11 @@ else
     {
         bool isCorrectAnswer = string.Compare(value, this.TestQuestion.CorrectAnswer, true) == 0;
 
-        if(!isCorrectAnswer)
+ 
+        
+        rectAnswer)
         {
-            //disable wrong button
+                     //disable wrong button
         }
 
         await OnAnswer.InvokeAsync(isCorrectAnswer);

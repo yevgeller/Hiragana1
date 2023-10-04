@@ -110,13 +110,13 @@ namespace QuestionnaireService
             }
 
             SyllabaryCharacter ch = remainingQuestions[rnd.Next(remainingQuestions.Count)];
-
+int correctAnswerPosition = rnd.Next(numberOfAnswers-1);
             switch (q.QuestionType)
             {
                 case QuestionnaireType.EnglishToHiragana:
-                    q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Hiragana };
+                    q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Hiragana, Answers = new List<string>(numberOfAnswers) };
                     var answerCandidates = SyllabaryGenerator.AllHiraganaCharacters().Where(x => x != ch.Hiragana);
-                    int correctAnswerPosition = rnd.Next(numberOfAnswers);
+                    
                     int remainingAnswers = numberOfAnswers;
                     while (remainingAnswers > 0)
                     {
