@@ -56,6 +56,7 @@ namespace QuestionnaireService
 
             while (remaining > 0)
             {
+                result.Add(GetNextQuestion(testType, result.Select(x=>x.Question), 4));
                 //get next question
                 //List<QuestionV1> questionCandidates = SyllabaryGenerator.GetSyllabaryCharacters().Where(x=>!)
                 remaining--;
@@ -64,7 +65,7 @@ namespace QuestionnaireService
             return new List<QuestionV1>();
         }
 
-        private QuestionV1 GetNextQuestion(QuestionnaireType questionType, List<string> existingQuestions, int numberOfAnswers)
+        private QuestionV1 GetNextQuestion(QuestionnaireType questionType, IEnumerable<string> existingQuestions, int numberOfAnswers)
         {
             var remainingQuestions = SyllabaryGenerator
                 .GetSyllabaryCharacters();
