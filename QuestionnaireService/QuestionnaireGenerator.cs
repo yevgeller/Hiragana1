@@ -100,7 +100,7 @@ namespace QuestionnaireService
                         .Where(x => !existingQuestions.Contains(x.Katakana))
                         .ToList();
                     break;
-                default: //Random
+                default:
                     break;
             }
 
@@ -114,20 +114,7 @@ namespace QuestionnaireService
             switch (q.QuestionType)
             {
                 case QuestionnaireType.EnglishToHiragana:
-                    q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Hiragana, Answers = new List<string>(numberOfAnswers) };
-                    q.Answers[correctAnswerPosition] = q.CorrectAnswer;
-                    var answerCandidates = SyllabaryGenerator.AllHiraganaCharacters().Where(x => x != ch.Hiragana);
-
-                    int remainingAnswers = numberOfAnswers;
-                    for (int i = 0; i < q.Answers.Count(); i++)
-                    {
-                        if (!string.IsNullOrEmpty(q.Answers[i]))
-                        {
-                            var randomSyllable = remainingQuestions[rnd.Next(remainingQuestions.Count)];
-                            remainingQuestions.Remove(randomSyllable);
-                            q.Answers[i] = randomSyllable.Hiragana;
-                        }
-                    }
+                    q = ProduceQuestion(questionType, ch.Transliteration, ch.Hiragana, numberOfAnswers, remainingQuestions, rnd, correctAnswerPosition);
                     break;
                 case QuestionnaireType.EnglishToKatakana:
                     q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Katakana };
@@ -147,6 +134,25 @@ namespace QuestionnaireService
                 default:
                     q = new QuestionV1 { QuestionType = questionType, Question = ch.Hiragana, CorrectAnswer = ch.Katakana };
                     break;
+            }
+
+            return q;
+        }
+
+        private static QuestionV1 ProduceQuestion(QuestionnaireType questionType, string assignment, string correctAnswer, int numberOfAnswers, List<SyllabaryCharacter> remainingQuestions, Random rnd, int correctAnswerPosition)
+        {
+            var q = new QuestionV1 { QuestionType = questionType, Question = assignment, CorrectAnswer = correctAnswer, Answers = new List<string>(numberOfAnswers) };
+            q.Answers[correctAnswerPosition] = q.CorrectAnswer;
+            var answerCandidates = SyllabaryGenerator.AllHiraganaCharacters().Where(x => x != q.CorrectAnswer);
+
+            for (int i = 0; i < q.Answers.Count(); i++)
+            {
+                if (!string.IsNullOrEmpty(q.Answers[i]))
+                {
+                    var randomSyllable = remainingQuestions[rnd.Next(remainingQuestions.Count)];
+                    remainingQuestions.Remove(randomSyllable);
+                    q.Answers[i] = randomSyllable.Hiragana;
+                }
             }
 
             return q;
