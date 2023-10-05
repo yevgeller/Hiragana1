@@ -6,11 +6,16 @@ namespace Hiragana1.Server.Services
     {
         IEnumerable<QuestionV1> GetNewQuestionnaire(int numberOfQuestions, QuestionnaireType questionType);
     }
-    public class QuestionnaireService
+    public class QuestionnaireService : IQuestionnaireService
     {
         public QuestionnaireService()
         {
             
+        }
+
+        public IEnumerable<QuestionV1> GetNewQuestionnaire(int numberOfQuestions, QuestionnaireType questionType)
+        {
+            throw new NotImplementedException();
         }
     }
 }

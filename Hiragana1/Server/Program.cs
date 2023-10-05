@@ -1,3 +1,4 @@
+using Hiragana1.Server.Services;
 using Microsoft.AspNetCore.ResponseCompression;
 
 namespace Hiragana1
@@ -10,6 +11,7 @@ namespace Hiragana1
 
             // Add services to the container.
 
+            builder.Services.AddScoped<IQuestionnaireService, QuestionnaireService>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
