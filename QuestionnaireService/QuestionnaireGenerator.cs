@@ -142,7 +142,7 @@ namespace QuestionnaireService
 
         private static QuestionV1 ProduceQuestion(QuestionnaireType questionType, string assignment, string correctAnswer, int numberOfAnswers, List<SyllabaryCharacter> remainingQuestions, Random rnd, int correctAnswerPosition)
         {
-            var q = new QuestionV1 { QuestionType = questionType, Question = assignment, CorrectAnswer = correctAnswer, Answers = new List<string>(numberOfAnswers) };
+            var q = new QuestionV1 { QuestionType = questionType, Question = assignment, CorrectAnswer = correctAnswer, Answers = (new string[]{ "","","",""}).ToList() };
             q.Answers[correctAnswerPosition] = q.CorrectAnswer;
             var answerCandidates = SyllabaryGenerator.AllHiraganaCharacters().Where(x => x != q.CorrectAnswer);
 

@@ -69,5 +69,13 @@ namespace Hiragana1.Server.Controllers
             //logger.LogInformation("Called GetList with args " + testType + ", " + noq);
             return c;
         }
+
+        [HttpGet("NewTest")]
+        public IEnumerable<QuestionV1> GetListWithQueryParams(int a, int b)
+        {
+            var c = service.GetNewQuestionnaire(5, QuestionnaireType.EnglishToHiragana);
+            //logger.LogInformation("Called GetList with args " + testType + ", " + noq);
+            return c;
+        }
     }
 }
