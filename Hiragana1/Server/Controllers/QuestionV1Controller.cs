@@ -10,10 +10,6 @@ namespace Hiragana1.Server.Controllers
         private readonly ILogger<QuestionV1Controller> logger;
         private readonly Services.QuestionnaireService service = new Services.QuestionnaireService();
         
-        public QuestionV1Controller()
-        {
-            
-        }
         private List<QuestionV1> list = new List<QuestionV1> {
              new QuestionV1 {
                  QuestionId = 1,
@@ -57,11 +53,21 @@ namespace Hiragana1.Server.Controllers
             return list.First();
         }
 
+
+        [HttpGet("NewTest")]
+        public IEnumerable<QuestionV1> GetListNoParams()
+        {
+            var a = service.GetNewQuestionnaire(5, QuestionnaireType.EnglishToHiragana);
+            //logger.LogInformation("Called GetList with args " + testType + ", " + noq);
+            return a;
+        }
+
         [HttpGet("NewTest/{a}/{b}")]
         public IEnumerable<QuestionV1> GetList(int a, int b)
         {
+            var c = service.GetNewQuestionnaire(5, QuestionnaireType.EnglishToHiragana);
             //logger.LogInformation("Called GetList with args " + testType + ", " + noq);
-            return service.GetNewQuestionnaire(5, QuestionnaireType.EnglishToHiragana);
+            return c;
         }
     }
 }
