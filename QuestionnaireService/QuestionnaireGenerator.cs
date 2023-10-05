@@ -61,8 +61,11 @@ namespace QuestionnaireService
                 //List<QuestionV1> questionCandidates = SyllabaryGenerator.GetSyllabaryCharacters().Where(x=>!)
                 remaining--;
             }
-
-            return new List<QuestionV1>();
+            for(int i = 0; i < result.Count(); i++)
+            {
+                result[i].QuestionId = i;
+            }
+            return result;// new List<QuestionV1>();
         }
 
         private QuestionV1 GetNextQuestion(QuestionnaireType questionType, IEnumerable<string> existingQuestions, int numberOfAnswers)
@@ -111,11 +114,11 @@ namespace QuestionnaireService
             }
 
             SyllabaryCharacter ch = remainingQuestions[rnd.Next(remainingQuestions.Count)];
-            int correctAnswerPosition = rnd.Next(numberOfAnswers - 1);
+            
             switch (q.QuestionType)
             {
                 case QuestionnaireType.EnglishToHiragana:
-                    q = ProduceQuestion(questionType, ch.Transliteration, ch.Hiragana, numberOfAnswers, remainingQuestions, rnd, correctAnswerPosition);
+                    q = ProduceQuestion(questionType, ch.Transliteration, ch.Hiragana, numberOfAnswers, remainingQuestions, rnd);
                     break;
                 case QuestionnaireType.EnglishToKatakana:
                     q = new QuestionV1 { QuestionType = questionType, Question = ch.Transliteration, CorrectAnswer = ch.Katakana };
@@ -140,10 +143,10 @@ namespace QuestionnaireService
             return q;
         }
 
-        private static QuestionV1 ProduceQuestion(QuestionnaireType questionType, string assignment, string correctAnswer, int numberOfAnswers, List<SyllabaryCharacter> remainingQuestions, Random rnd, int correctAnswerPosition)
+        private static QuestionV1 ProduceQuestion(QuestionnaireType questionType, string assignment, string correctAnswer, int numberOfAnswers, List<SyllabaryCharacter> remainingQuestions, Random rnd)
         {
             var q = new QuestionV1 { QuestionType = questionType, Question = assignment, CorrectAnswer = correctAnswer, Answers = (new string[]{ "","","",""}).ToList() };
-            q.Answers[correctAnswerPosition] = q.CorrectAnswer;
+            q.Answers[rnd.Next(q.Answers.Count())] = q.CorrectAnswer;
             var answerCandidates = SyllabaryGenerator.AllHiraganaCharacters().Where(x => x != q.CorrectAnswer);
 
             for (int i = 0; i < q.Answers.Count(); i++)
