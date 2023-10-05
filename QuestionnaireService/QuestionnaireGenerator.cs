@@ -54,12 +54,12 @@ namespace QuestionnaireService
             var result = new List<QuestionV1>();
             var remaining = numberOfQuestions;
 
-            while (remaining > 0)
+            for(int i = 0; i < numberOfQuestions; i++)
             {
-                result.Add(GetNextQuestion(testType, result.Select(x=>x.Question), 4));
-                //get next question
-                //List<QuestionV1> questionCandidates = SyllabaryGenerator.GetSyllabaryCharacters().Where(x=>!)
-                remaining--;
+                var q = GetNextQuestion(testType, result.Select(x => x.Question), 4);
+                q.QuestionId = i;
+                q.NextQuestionId = i < numberOfQuestions - 1 ? i + 1 : -1;
+                result.Add(q);
             }
             for(int i = 0; i < result.Count(); i++)
             {
