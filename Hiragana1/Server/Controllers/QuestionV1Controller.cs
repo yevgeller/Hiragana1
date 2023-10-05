@@ -8,8 +8,12 @@ namespace Hiragana1.Server.Controllers
     public class QuestionV1Controller : ControllerBase
     {
         private readonly ILogger<QuestionV1Controller> logger;
-
-
+        private readonly Services.QuestionnaireService service = new Services.QuestionnaireService();
+        
+        public QuestionV1Controller()
+        {
+            
+        }
         private List<QuestionV1> list = new List<QuestionV1> {
              new QuestionV1 {
                  QuestionId = 1,
@@ -56,8 +60,8 @@ namespace Hiragana1.Server.Controllers
         [HttpGet("NewTest")]
         public IEnumerable<QuestionV1> GetList()
         {
-            
-            return list;
+            return service.GetNewQuestionnaire(5, QuestionnaireType.EnglishToHiragana);
+            //return list;
         }
     }
 }
