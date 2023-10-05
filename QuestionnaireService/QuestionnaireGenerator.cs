@@ -148,7 +148,7 @@ namespace QuestionnaireService
 
             for (int i = 0; i < q.Answers.Count(); i++)
             {
-                if (!string.IsNullOrEmpty(q.Answers[i]))
+                if (string.IsNullOrEmpty(q.Answers[i]))
                 {
                     var randomSyllable = remainingQuestions[rnd.Next(remainingQuestions.Count)];
                     remainingQuestions.Remove(randomSyllable);
