@@ -56,7 +56,7 @@ namespace Hiragana1.Server.Controllers
         [HttpGet("NewTest")]
         public IEnumerable<QuestionV1> GetList()
         {
-
+            
             return list;
         }
     }
