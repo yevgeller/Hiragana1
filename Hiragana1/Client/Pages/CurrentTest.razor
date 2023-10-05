@@ -33,8 +33,8 @@
     public async void StartNewTest()
     {
         testOver = false;
-        questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest/1/5");
-        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest?a=1&b=5");
+        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest/1/5");
+        questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest2?a=1&b=5");
 
         //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest");
         if (questions.Any())

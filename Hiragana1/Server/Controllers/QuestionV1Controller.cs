@@ -70,7 +70,7 @@ namespace Hiragana1.Server.Controllers
             return c;
         }
 
-        [HttpGet("NewTest")]
+        [HttpGet("NewTest2")]
         public IEnumerable<QuestionV1> GetListWithQueryParams(int a, int b)
         {
             var c = service.GetNewQuestionnaire(5, QuestionnaireType.EnglishToHiragana);
