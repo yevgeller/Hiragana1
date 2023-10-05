@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\QuestionnaireService\QuestionnaireService.csproj" />
     <ProjectReference Include="..\Client\Hiragana1.Client.csproj" />
     <ProjectReference Include="..\Shared\Hiragana1.Shared.csproj" />
   </ItemGroup>

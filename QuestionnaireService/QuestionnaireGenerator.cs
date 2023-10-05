@@ -49,7 +49,7 @@ namespace QuestionnaireService
             return new List<QuestionV1>();
         }
 
-        public List<QuestionV1> GetNewTest2(QuestionnaireType testType, int numberOfQuestions)
+        public IEnumerable<QuestionV1> GetNewTest2(QuestionnaireType testType, int numberOfQuestions)
         {
             var result = new List<QuestionV1>();
             var remaining = numberOfQuestions;

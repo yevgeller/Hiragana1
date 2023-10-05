@@ -1,4 +1,5 @@
 ﻿using Hiragana1.Shared;
+using QuestionnaireService;
 
 namespace Hiragana1.Server.Services
 {
@@ -15,7 +16,8 @@ namespace Hiragana1.Server.Services
 
         public IEnumerable<QuestionV1> GetNewQuestionnaire(int numberOfQuestions, QuestionnaireType questionType)
         {
-            throw new NotImplementedException();
+            QuestionnaireGenerator generator = new QuestionnaireGenerator();
+            return generator.GetNewTest2(testType: QuestionnaireType.EnglishToHiragana, 5);
         }
     }
 }
