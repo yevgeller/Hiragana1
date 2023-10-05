@@ -61,7 +61,6 @@ namespace Hiragana1.Server.Controllers
         public IEnumerable<QuestionV1> GetList()
         {
             return service.GetNewQuestionnaire(5, QuestionnaireType.EnglishToHiragana);
-            //return list;
         }
     }
 }
