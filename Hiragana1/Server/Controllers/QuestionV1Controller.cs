@@ -57,9 +57,10 @@ namespace Hiragana1.Server.Controllers
             return list.First();
         }
 
-        [HttpGet("NewTest")]
-        public IEnumerable<QuestionV1> GetList()
+        [HttpGet("NewTest/{a}/{b}")]
+        public IEnumerable<QuestionV1> GetList(int a, int b)
         {
+            //logger.LogInformation("Called GetList with args " + testType + ", " + noq);
             return service.GetNewQuestionnaire(5, QuestionnaireType.EnglishToHiragana);
         }
     }
