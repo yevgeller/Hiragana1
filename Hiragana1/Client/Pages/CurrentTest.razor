@@ -54,7 +54,7 @@
         //var j = isCorrect;
         if(isCorrect)
         {
-            currentQuestion = questions.Where(q => q.QuestionId > currentQuestion.QuestionId).FirstOrDefault();
+            currentQuestion = questions.Where(q => q.QuestionId == currentQuestion.NextQuestionId).FirstOrDefault();
             if(currentQuestion == null)
             {
                 testOver = true;
