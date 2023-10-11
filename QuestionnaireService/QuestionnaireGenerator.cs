@@ -65,13 +65,12 @@ namespace QuestionnaireService
             {
                 result[i].QuestionId = i;
             }
-            return result;// new List<QuestionV1>();
+            return result;
         }
 
         private QuestionV1 GetNextQuestion(QuestionnaireType questionType, IEnumerable<string> existingQuestions, int numberOfAnswers)
         {
-            var remainingQuestions = SyllabaryGenerator
-                .GetSyllabaryCharacters();
+            var remainingQuestions = SyllabaryGenerator.GetSyllabaryCharacters();
 
             //    EnglishToHiragana = 0,
             //EnglishToKatakana,
@@ -145,9 +144,10 @@ namespace QuestionnaireService
 
         private static QuestionV1 ProduceQuestion(QuestionnaireType questionType, string assignment, string correctAnswer, int numberOfAnswers, List<SyllabaryCharacter> remainingQuestions, Random rnd)
         {
-            var q = new QuestionV1 { QuestionType = questionType, Question = assignment, CorrectAnswer = correctAnswer, Answers = (new string[]{ "","","",""}).ToList() };
+
+            var q = new QuestionV1 { QuestionType = questionType, Question = assignment, CorrectAnswer = correctAnswer, Answers = Enumerable.Repeat("", numberOfAnswers).ToList() };
             q.Answers[rnd.Next(q.Answers.Count())] = q.CorrectAnswer;
-            var answerCandidates = SyllabaryGenerator.AllHiraganaCharacters().Where(x => x != q.CorrectAnswer);
+            //var answerCandidates = SyllabaryGenerator.AllHiraganaCharacters().Where(x => x != q.CorrectAnswer);
 
             for (int i = 0; i < q.Answers.Count(); i++)
             {
