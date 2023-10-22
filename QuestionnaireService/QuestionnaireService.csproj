@@ -10,4 +10,10 @@
     <ProjectReference Include="..\Hiragana1\Shared\Hiragana1.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="SyllabaryQuizGenerator">
+      <HintPath>..\..\SyllabaryQuizGenerator\SyllabaryQuizGenerator\bin\Debug\net7.0\SyllabaryQuizGenerator.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
