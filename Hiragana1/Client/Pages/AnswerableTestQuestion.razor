@@ -40,9 +40,7 @@ else
 
     private async Task CompareAnswer(string value)
     {
-        bool isCorrectAnswer = string.Compare(value, this.TestQuestion.CorrectAnswer, true) == 0;
-
- 
+        bool isCorrectAnswer = string.Compare(value, this.TestQuestion.CorrectAnswer, true) == 0; 
         
         if(!isCorrectAnswer)
         {
