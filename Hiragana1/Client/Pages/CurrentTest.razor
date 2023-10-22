@@ -1,5 +1,6 @@
 ﻿@page "/currenttest"
 @using Hiragana1.Shared;
+@using SyllabaryQuizGenerator;
 @inject HttpClient Http
 
 <h3>Current Test</h3>
@@ -29,13 +30,14 @@
     QuestionV1 currentQuestion;
 
     QuestionV1[] questions;
+    QuizItem[] quizItems;
 
     public async void StartNewTest()
     {
         testOver = false;
         //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest/1/5");
-        questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest2?a=1&b=5");
-
+        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest2?a=1&b=5");
+        quizItems = await Http.GetFromJsonAsync<QuizItem[]>("QuestionV1/NewTest3");
         //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest");
         if (questions.Any())
         {
