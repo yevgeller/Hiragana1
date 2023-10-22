@@ -77,5 +77,11 @@ namespace Hiragana1.Server.Controllers
             //logger.LogInformation("Called GetList with args " + testType + ", " + noq);
             return c;
         }
+
+        [HttpGet("NewTest3")]
+        public IEnumerable<SyllabaryQuizGenerator.QuizItem> GetTestQuiz()
+        {
+            return service.GetQuizItems();
+        }
     }
 }

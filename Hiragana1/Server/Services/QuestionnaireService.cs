@@ -7,7 +7,7 @@ namespace Hiragana1.Server.Services
     public interface IQuestionnaireService
     {
         IEnumerable<QuestionV1> GetNewQuestionnaire(int numberOfQuestions, QuestionnaireType questionType);
-        IEnumerable<QuizItem> GetQuizItems(QuestionnaireType questionType);
+        IEnumerable<QuizItem> GetQuizItems();
     }
     public class QuestionnaireService : IQuestionnaireService
     {
@@ -22,7 +22,7 @@ namespace Hiragana1.Server.Services
             return generator.GetNewTest2(testType: QuestionnaireType.EnglishToHiragana, 5);
         }
 
-        public IEnumerable<QuizItem> GetQuizItems(QuestionnaireType questionType)
+        public IEnumerable<QuizItem> GetQuizItems()
         {
             QuizGenerator qg = new QuizGenerator();
             return qg.GenerateQuizItems(10);
