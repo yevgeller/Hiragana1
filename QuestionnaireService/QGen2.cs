@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace QuestionnaireService
 {
-    internal class QGen2
+    public class QGen2
     {
+        public List<SyllabaryQuizGenerator.>
     }
 }
