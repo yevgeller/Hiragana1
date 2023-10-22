@@ -16,5 +16,11 @@
     <ProjectReference Include="..\Shared\Hiragana1.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="SyllabaryQuizGenerator">
+      <HintPath>..\..\..\..\source\repos\SyllabaryQuizGenerator\SyllabaryQuizGenerator\SyllabaryQuizGenerator\bin\Release\net7.0\SyllabaryQuizGenerator.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 
 </Project>
