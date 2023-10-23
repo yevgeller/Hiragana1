@@ -23,7 +23,7 @@ namespace Hiragana1.Server.Services
             return generator.GetNewTest2(testType: QuestionnaireType.EnglishToHiragana, 5);
         }
 
-        public IEnumerable<QuizItem> GetQuizItems()
+        public IEnumerable<QuestionDto> GetQuizItems()
         {
             QuizGenerator qg = new QuizGenerator();
             var ret = qg.GenerateQuizItems(10);
@@ -31,9 +31,16 @@ namespace Hiragana1.Server.Services
             List<QuestionDto> items = new List<QuestionDto>();
             foreach (var item in ret)
             {
-
+                items.Add(new QuestionDto { 
+                    Id = item.Id, 
+                    Answers = item.Answers,
+                    CorrectAnswer = item.CorrectAnswer, 
+                    NextQuizItemId = item.NextQuizItemId, 
+                    Question = item.Question 
+                });
             }
 
+            return items;
         }
     }
 }
