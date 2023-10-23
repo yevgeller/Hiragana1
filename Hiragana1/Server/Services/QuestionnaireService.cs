@@ -25,7 +25,9 @@ namespace Hiragana1.Server.Services
         public IEnumerable<QuizItem> GetQuizItems()
         {
             QuizGenerator qg = new QuizGenerator();
-            return qg.GenerateQuizItems(10);
+            var ret = qg.GenerateQuizItems(10);
+
+
         }
     }
 }

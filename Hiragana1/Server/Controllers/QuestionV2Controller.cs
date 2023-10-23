@@ -24,6 +24,7 @@ namespace Hiragana1.Server.Controllers
         public IActionResult Get()
         {
             logger.LogInformation("Hit Get method");
+            return service.GetQuizItems();
 
 
         }
