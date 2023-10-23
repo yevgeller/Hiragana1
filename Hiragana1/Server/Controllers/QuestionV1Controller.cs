@@ -1,4 +1,5 @@
 ﻿using Hiragana1.Shared;
+using Hiragana1.Shared.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hiragana1.Server.Controllers
@@ -79,7 +80,7 @@ namespace Hiragana1.Server.Controllers
         }
 
         [HttpGet("NewTest3")]
-        public IEnumerable<SyllabaryQuizGenerator.QuizItem> GetTestQuiz()
+        public IEnumerable<QuestionDto> GetTestQuiz()
         {
             return service.GetQuizItems();
         }
