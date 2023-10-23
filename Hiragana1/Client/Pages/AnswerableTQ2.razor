@@ -1,0 +1,55 @@
+﻿@using Hiragana1.Shared;
+<h3>Answerable TQ v2</h3>
+
+@if (!TestQuestion.Answers.Any())
+{
+    <p><em>Loading test question...</em></p>
+}
+else
+{
+    <h3>@TestQuestion.Question</h3>
+    <h2>@somethingHere</h2>
+    <div class="d-flex flex-row">
+        @foreach (var a in TestQuestion.Answers.Take(2))
+        {
+            <div class="p-2 answerButton"><button class="btn btn-info answerButton" @onclick="@(_=>CompareAnswer(a))">@a</button></div>
+        }
+    </div>
+
+    <div class="d-flex flex-row">
+        @foreach (var a in TestQuestion.Answers.Skip(2).Take(2))
+        {
+            <div class="p-2 answerButton"><button class="btn btn-info answerButton" @onclick="@(_=>CompareAnswer(a))">@a</button></div>
+        }
+    </div>
+}
+@code {
+
+    string defaultValue = "nothing";
+    string somethingHere;
+
+    private void OnInitializedAsync()
+    {
+        this.somethingHere = this.defaultValue;
+    }
+
+    [Parameter]
+    public QuestionV1? TestQuestion { get; set; }
+
+    [Parameter] public EventCallback<bool> OnAnswer { get; set; }
+
+    private async Task CompareAnswer(string value)
+    {
+        bool isCorrectAnswer = string.Compare(value, this.TestQuestion.CorrectAnswer, true) == 0;
+
+        if (!isCorrectAnswer)
+        {
+            //disable wrong button
+        }
+
+        await OnAnswer.InvokeAsync(isCorrectAnswer);
+    }
+}
+
+
+
