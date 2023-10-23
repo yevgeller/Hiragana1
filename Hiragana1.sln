@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hiragana1.Client", "Hiragan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hiragana1.Shared", "Hiragana1\Shared\Hiragana1.Shared.csproj", "{4E9096F5-4E17-4C11-9B18-68F213860498}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestionnaireService", "QuestionnaireService\QuestionnaireService.csproj", "{D0281410-7FC0-40F9-9FFB-6CE53C2AC474}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestionnaireService", "QuestionnaireService\QuestionnaireService.csproj", "{D0281410-7FC0-40F9-9FFB-6CE53C2AC474}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

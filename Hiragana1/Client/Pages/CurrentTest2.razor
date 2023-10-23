@@ -1,0 +1,68 @@
+﻿@page "/currenttest2"
+@using Hiragana1.Shared;
+@using SyllabaryQuizGenerator;
+@inject HttpClient Http
+
+<h3>Current Test</h3>
+
+<div>If no test in progress</div>
+<ul>
+    <li>Fix button display</li>
+    <li>Wire up correct/incorrect event</li>
+</ul>
+@if (currentQuestion == null || currentQuestion.QuestionId < 1)
+{
+    <button class="btn btn-primary" @onclick="StartNewTest">Start Test</button>
+}
+@if (currentQuestion != null)
+{
+    <div>Display a question</div>
+    <AnswerableTestQuestion TestQuestion="currentQuestion" OnAnswer="AnswerHappened"></AnswerableTestQuestion>
+}
+@if (testOver)
+{
+    <h2>Test is Over!</h2>
+}
+
+@code {
+    public bool IsTestInProgress { get; set; } = false;
+    public bool testOver = false;
+    QuestionV1 currentQuestion;
+
+    QuestionV1[] questions;
+    QuizItem[] quizItems;
+
+    public async void StartNewTest()
+    { //copy page, create new control, utilize new type
+        testOver = false;
+        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest/1/5");
+        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest2?a=1&b=5");
+        quizItems = await Http.GetFromJsonAsync<QuizItem[]>("QuestionV1/NewTest3");
+        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest");
+        if (questions.Any())
+        {
+            // CurrentTestQuestion = questions.OrderBy(x => x.QuestionId).First();
+            currentQuestion = questions.OrderBy(x => x.QuestionId).First();
+            StateHasChanged();
+        }
+        else
+        {
+            throw new Exception("No questions returned from Controller");
+        }
+        this.IsTestInProgress = true;
+    }
+
+    private void AnswerHappened(bool isCorrect)
+    {
+        //var j = isCorrect;
+        if (isCorrect)
+        {
+            currentQuestion = questions.Where(q => q.QuestionId == currentQuestion.NextQuestionId).FirstOrDefault();
+            if (currentQuestion == null)
+            {
+                testOver = true;
+            }
+        }
+    }
+
+}
