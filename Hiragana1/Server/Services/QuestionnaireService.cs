@@ -8,7 +8,7 @@ namespace Hiragana1.Server.Services
     public interface IQuestionnaireService
     {
         IEnumerable<QuestionV1> GetNewQuestionnaire(int numberOfQuestions, QuestionnaireType questionType);
-        IEnumerable<QuizItem> GetQuizItems();
+        IEnumerable<QuestionDto> GetQuizItems();
     }
     public class QuestionnaireService : IQuestionnaireService
     {

@@ -1,4 +1,5 @@
 ﻿using Hiragana1.Server.Services;
+using Hiragana1.Shared.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using SyllabaryQuizGenerator;
 
@@ -22,7 +23,7 @@ namespace Hiragana1.Server.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<QuizItem> Get()
+        public IEnumerable<QuestionDto> Get()
         {
             logger.LogInformation("Hit Get method");
             return service.GetQuizItems();
