@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SyllabaryQuizGenerator" Version="2023.10.24.2129" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Hiragana1\Shared\Hiragana1.Shared.csproj" />
   </ItemGroup>
 

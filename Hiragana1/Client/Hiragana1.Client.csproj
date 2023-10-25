@@ -17,12 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="SyllabaryQuizGenerator">
-      <HintPath>..\..\..\..\source\repos\SyllabaryQuizGenerator\SyllabaryQuizGenerator\SyllabaryQuizGenerator\bin\Release\net7.0\SyllabaryQuizGenerator.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 
