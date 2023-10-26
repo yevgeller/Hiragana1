@@ -1,10 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="QuestionnaireGenerator.cs" />
+    <Compile Remove="SyllabaryGenerator.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="SyllabaryQuizGenerator" Version="2023.10.24.2129" />

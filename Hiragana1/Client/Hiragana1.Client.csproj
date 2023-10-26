@@ -8,8 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\AnswerableTestQuestion.razor" />
     <Content Remove="Pages\Counter.razor" />
     <Content Remove="Pages\CurrentTest.razor" />
+    <Content Remove="Pages\FetchData.razor" />
+    <Content Remove="Pages\SomethingOne.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\AnswerableTestQuestion.razor.css" />
+    <None Remove="Pages\SomethingOne.razor.css" />
   </ItemGroup>
 
   <ItemGroup>

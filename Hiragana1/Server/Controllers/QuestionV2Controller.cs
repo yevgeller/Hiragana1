@@ -9,9 +9,9 @@ namespace Hiragana1.Server.Controllers
     [Route("[controller]")]
     public class QuestionV2Controller : Controller
     {
-        private readonly ILogger<QuestionV1Controller> logger;
+        private readonly ILogger<QuestionV2Controller> logger;
         private readonly IQuestionnaireService service = new Services.QuestionnaireService();
-        public QuestionV2Controller(ILogger<QuestionV1Controller> logger, IQuestionnaireService _service)
+        public QuestionV2Controller(ILogger<QuestionV2Controller> logger, IQuestionnaireService _service)
         {
             this.logger = logger;
             this.service = _service;
