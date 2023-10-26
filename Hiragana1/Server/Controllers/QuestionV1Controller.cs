@@ -41,7 +41,7 @@ namespace Hiragana1.Server.Controllers
             }
         };
 
-        public QuestionV1Controller(ILogger<QuestionV1Controller> logger)
+<label class="form-check-label" for        public QuestionV1Controller(ILogger<QuestionV1Controller> logger)
         {
             this.logger = logger;
         }
