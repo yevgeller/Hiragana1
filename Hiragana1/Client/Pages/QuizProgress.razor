@@ -1,0 +1,24 @@
+﻿<h3>QuizProgress</h3>
+
+<div>
+    Question number: @CurrentQuestionNumber
+</div>
+<div>
+    Progress: @NumberCorrectSoFar correct out of @TotalNumberOfQuestions
+</div>
+<div>
+    
+</div>
+
+
+@code {
+    [Parameter]
+    public int CurrentQuestionNumber { get; set; }
+
+    [Parameter]
+    public int TotalNumberOfQuestions { get; set; }
+
+    [Parameter]
+    public int NumberCorrectSoFar { get; set; }
+
+}
