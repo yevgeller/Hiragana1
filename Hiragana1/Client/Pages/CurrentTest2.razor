@@ -18,6 +18,7 @@
 @if (currentQuestion != null)
 {
     <div>Display a question</div>
+    <AnswerableTQ2 TestQuestion="currentQuestion" OnAnswer="AnswerHappened"></AnswerableTQ2>
     @* <AnswerableTestQuestion TestQuestion="currentQuestion" OnAnswer="AnswerHappened"></AnswerableTestQuestion> *@
 }
 @if (testOver)
