@@ -1,4 +1,5 @@
 ﻿@using Hiragana1.Shared;
+@using Hiragana1.Shared.DTOs;
 <h3>Answerable TQ v2</h3>
 
 @if (!TestQuestion.Answers.Any())
@@ -34,7 +35,7 @@ else
     }
 
     [Parameter]
-    public QuestionV1? TestQuestion { get; set; }
+    public QuestionDto? TestQuestion { get; set; }
 
     [Parameter] public EventCallback<bool> OnAnswer { get; set; }
 

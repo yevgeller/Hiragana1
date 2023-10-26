@@ -55,29 +55,29 @@ namespace Hiragana1.Server.Controllers
         }
 
 
-        [HttpGet("NewTest")]
-        public IEnumerable<QuestionV1> GetListNoParams()
-        {
-            var a = service.GetNewQuestionnaire(5, QuestionnaireType.EnglishToHiragana);
-            //logger.LogInformation("Called GetList with args " + testType + ", " + noq);
-            return a;
-        }
+        //[HttpGet("NewTest")]
+        //public IEnumerable<QuestionV1> GetListNoParams()
+        //{
+        //    var a = service.GetNewQuestionnaire(5, QuestionnaireType.EnglishToHiragana);
+        //    //logger.LogInformation("Called GetList with args " + testType + ", " + noq);
+        //    return a;
+        //}
 
-        [HttpGet("NewTest/{a}/{b}")]
-        public IEnumerable<QuestionV1> GetList(int a, int b)
-        {
-            var c = service.GetNewQuestionnaire(5, QuestionnaireType.EnglishToHiragana);
-            //logger.LogInformation("Called GetList with args " + testType + ", " + noq);
-            return c;
-        }
+        //[HttpGet("NewTest/{a}/{b}")]
+        //public IEnumerable<QuestionV1> GetList(int a, int b)
+        //{
+        //    var c = service.GetNewQuestionnaire(5, QuestionnaireType.EnglishToHiragana);
+        //    //logger.LogInformation("Called GetList with args " + testType + ", " + noq);
+        //    return c;
+        //}
 
-        [HttpGet("NewTest2")]
-        public IEnumerable<QuestionV1> GetListWithQueryParams(int a, int b)
-        {
-            var c = service.GetNewQuestionnaire(5, QuestionnaireType.EnglishToHiragana);
-            //logger.LogInformation("Called GetList with args " + testType + ", " + noq);
-            return c;
-        }
+        //[HttpGet("NewTest2")]
+        //public IEnumerable<QuestionV1> GetListWithQueryParams(int a, int b)
+        //{
+        //    var c = service.GetNewQuestionnaire(5, QuestionnaireType.EnglishToHiragana);
+        //    //logger.LogInformation("Called GetList with args " + testType + ", " + noq);
+        //    return c;
+        //}
 
         [HttpGet("NewTest3")]
         public IEnumerable<QuestionDto> GetTestQuiz()
