@@ -18,6 +18,8 @@
 {
     <div>Display a question</div>
     <AnswerableTQ2 TestQuestion="currentQuestion" OnAnswer="AnswerHappened"></AnswerableTQ2>
+
+    <div style="margin-top:100px; border: 1px solid blue;"><QuizProgress CurrentQuestionNumber="currentQuestion.Id" NumberCorrectSoFar="currentQuestion.Id" TotalNumberOfQuestions="quizItems.Length"></QuizProgress></div>
 }
 @if (testOver)
 {
@@ -27,6 +29,7 @@
 @code {
     public bool IsTestInProgress { get; set; } = false;
     public bool testOver = false;
+    private int mistakesQty = 0;
     QuestionDto currentQuestion;
 
     // QuestionV1[] questions;

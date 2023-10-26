@@ -7,18 +7,20 @@
     Progress: @NumberCorrectSoFar correct out of @TotalNumberOfQuestions
 </div>
 <div>
-    
+    Mistakes so far: @NumberOfMistakes
 </div>
 
 
 @code {
     [Parameter]
-    public int CurrentQuestionNumber { get; set; }
+    public int CurrentQuestionNumber { get; set; } = 0;
 
     [Parameter]
-    public int TotalNumberOfQuestions { get; set; }
+    public int TotalNumberOfQuestions { get; set; } = 0;
 
     [Parameter]
-    public int NumberCorrectSoFar { get; set; }
+    public int NumberCorrectSoFar { get; set; } = 0;
 
+    [Parameter]
+    public int NumberOfMistakes { get; set; } = 0;
 }
