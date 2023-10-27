@@ -23,6 +23,12 @@ else
             <div class="p-2 answerButton"><button class="btn btn-info answerButton" @onclick="@(_=>CompareAnswer(a))">@a</button></div>
         }
     </div>
+    <br />
+    <hr >
+    @foreach(var a in TestQuestion.Answers)
+    {
+        <AnswerButton ButtonText="a" IsCorrect="IsThisAnswerCorrect(a)" OnCorrectAnswer="AnsweredCorrectly"></AnswerButton>
+    }
 }
 @code {
 
@@ -49,6 +55,18 @@ else
         }
 
         await OnAnswer.InvokeAsync(isCorrectAnswer);
+
+
+    }
+
+    private async Task AnsweredCorrectly()
+    {
+        await OnAnswer.InvokeAsync(true);
+    }
+
+    private bool IsThisAnswerCorrect(string answer)
+    {
+        return answer == TestQuestion.CorrectAnswer;
     }
 }
 

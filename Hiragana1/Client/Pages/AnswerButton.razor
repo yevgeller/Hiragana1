@@ -15,11 +15,13 @@
     [Parameter]
     public string ButtonText { get; set; } = "";
 
-    [Parameter] public EventCallback<bool> OnAnswer { get; set; }
+    [Parameter] public EventCallback OnCorrectAnswer { get; set; }
     private bool isDisabled = false;
 
-    private void Answered()
+    private async Task Answered()
     {
         isDisabled = true;
+        if (IsCorrect)
+            await OnCorrectAnswer.InvokeAsync();
     }
 }
