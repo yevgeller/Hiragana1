@@ -19,7 +19,12 @@
     <div>Display a question</div>
     <AnswerableTQ2 TestQuestion="currentQuestion" OnAnswer="AnswerHappened"></AnswerableTQ2>
 
-    <div style="margin-top:100px; border: 1px solid blue;"><QuizProgress CurrentQuestionNumber="currentQuestion.Id" NumberCorrectSoFar="currentQuestion.Id" TotalNumberOfQuestions="quizItems.Length"></QuizProgress></div>
+    <div style="margin-top:100px; border: 1px solid blue;">
+        <QuizProgress CurrentQuestionNumber="currentQuestion.Id"
+                      NumberCorrectSoFar="currentQuestion.Id"
+                      TotalNumberOfQuestions="quizItems.Length"
+                      NumberOfMistakes="@mistakesQty"></QuizProgress>
+    </div>
 }
 @if (testOver)
 {
@@ -66,6 +71,8 @@
                 testOver = true;
             }
         }
+        else
+            mistakesQty++;
     }
 
 }
