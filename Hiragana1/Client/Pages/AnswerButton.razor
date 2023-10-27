@@ -1,9 +1,25 @@
 ﻿<div class="p-2 answerButton">
-    <button class="btn btn-info answerButton2"></button>
+    <button 
+        class="btn btn-info answerButton2" 
+        disabled="@isDisabled" 
+        @onclick="Answered">
+        @ButtonText
+        </button>
 
 </div>
 
 @code {
     [Parameter]
     public bool IsCorrect { get; set; }
+
+    [Parameter]
+    public string ButtonText { get; set; } = "";
+
+    [Parameter] public EventCallback<bool> OnAnswer { get; set; }
+    private bool isDisabled = false;
+
+    private void Answered()
+    {
+        isDisabled = true;
+    }
 }
