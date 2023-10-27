@@ -27,7 +27,7 @@ else
     <hr >
     @foreach(var a in TestQuestion.Answers)
     {
-        <AnswerButton ButtonText="a" IsCorrect="IsThisAnswerCorrect(a)" OnCorrectAnswer="AnsweredCorrectly"></AnswerButton>
+        <AnswerButton ButtonText="@a" IsCorrect="IsThisAnswerCorrect(a)" OnCorrectAnswer="AnsweredCorrectly"></AnswerButton>
     }
 }
 @code {
@@ -62,6 +62,7 @@ else
     private async Task AnsweredCorrectly()
     {
         await OnAnswer.InvokeAsync(true);
+        StateHasChanged();
     }
 
     private bool IsThisAnswerCorrect(string answer)
