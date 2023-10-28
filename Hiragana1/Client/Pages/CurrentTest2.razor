@@ -18,7 +18,6 @@
     </div>
     <AnswerableTQ2 TestQuestion="currentQuestion" OnAnswer="AnswerHappened"></AnswerableTQ2>
 
-
 }
 @if (testOver)
 {
@@ -26,24 +25,17 @@
 }
 
 @code {
-    public bool IsTestInProgress { get; set; } = false;
     public bool testOver = false;
     private int mistakesQty = 0;
-    QuestionDto currentQuestion;
-
-    // QuestionV1[] questions;
-    QuestionDto[] quizItems;
+    QuestionDto currentQuestion = new QuestionDto();
+    QuestionDto[] quizItems = new QuestionDto[0];
 
     public async void StartNewTest()
-    { //copy page, create new control, utilize new type
+    { 
         testOver = false;
-        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest/1/5");
-        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest2?a=1&b=5");
-        quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>("QuestionV2");
-        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest");
+        quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>("QuestionV2") ?? new QuestionDto[0];
         if (quizItems.Any())
         {
-            // CurrentTestQuestion = questions.OrderBy(x => x.QuestionId).First();
             currentQuestion = quizItems.OrderBy(x => x.Id).First();
             StateHasChanged();
         }
@@ -51,12 +43,10 @@
         {
             throw new Exception("No questions returned from Controller");
         }
-        this.IsTestInProgress = true;
     }
 
     private void AnswerHappened(bool isCorrect)
     {
-        //var j = isCorrect;
         if (isCorrect)
         {
             currentQuestion = quizItems.Where(q => q.Id == currentQuestion.NextQuizItemId).FirstOrDefault();
@@ -68,7 +58,10 @@
         else
             mistakesQty++;
 
-        StateHasChanged();
+        //StateHasChanged();
     }
 
+        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest/1/5");
+        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest2?a=1&b=5");
+        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest");
 }

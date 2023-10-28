@@ -1,15 +1,16 @@
 ﻿
-    <button class="btn btn-info answerButton2 m-3"
-            disabled="@isDisabled"
-            @onclick="Answered">
-        @ButtonText
-    </button>
+<button class="btn btn-info answerButton2 m-3"
+        disabled="@isDisabled"
+@onclick="Answered">
+    @ButtonText
+</button>
 
 @code {
     [Parameter]
     public bool IsCorrect { get; set; }
 
     private string _buttonText = "";
+    private bool alreadyAnswered = false;
 
     [Parameter]
     public string ButtonText
@@ -21,19 +22,23 @@
         set
         {
             this.isDisabled = false;
+            this.alreadyAnswered = false;
             _buttonText = value;
 
         }
     }
 
-    [Parameter] public EventCallback OnCorrectAnswer { get; set; }
+    [Parameter] public EventCallback<bool> OnCorrectAnswer { get; set; }
     private bool isDisabled = false;
 
     private async Task Answered()
     {
         isDisabled = true;
-        if (IsCorrect)
-            await OnCorrectAnswer.InvokeAsync();
+        if (!alreadyAnswered)
+        {
+            alreadyAnswered = true;
+            await OnCorrectAnswer.InvokeAsync(IsCorrect);
+        }
     }
 }
 
