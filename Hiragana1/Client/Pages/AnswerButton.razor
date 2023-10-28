@@ -1,19 +1,32 @@
-﻿<div class="p-2 answerButton">
-    <button 
-        class="btn btn-info answerButton2" 
-        disabled="@isDisabled" 
-        @onclick="Answered">
+﻿<span class="p-2">
+    <button class="btn btn-info answerButton2"
+            disabled="@isDisabled"
+    @onclick="Answered">
         @ButtonText
-        </button>
-
-</div>
+    </button>
+    disabled: @isDisabled
+</span>
 
 @code {
     [Parameter]
     public bool IsCorrect { get; set; }
 
+    private string _buttonText = "";
+
     [Parameter]
-    public string ButtonText { get; set; } = "";
+    public string ButtonText
+    {
+        get
+        {
+            return _buttonText;
+        }
+        set
+        {
+            this.isDisabled = false;
+            _buttonText = value;
+
+        }
+    }
 
     [Parameter] public EventCallback OnCorrectAnswer { get; set; }
     private bool isDisabled = false;
@@ -25,3 +38,4 @@
             await OnCorrectAnswer.InvokeAsync();
     }
 }
+
