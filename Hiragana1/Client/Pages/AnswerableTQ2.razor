@@ -8,13 +8,13 @@
 }
 else
 {
-    <h3>@TestQuestion.Question</h3>
-    <h2>@somethingHere</h2>
-    
+    <h3 class="align-content-center">@TestQuestion.Question</h3>
+    <div class="d-flex flex-row bd-highlight flex-wrap">
     @foreach(var a in TestQuestion.Answers)
     {
         <AnswerButton ButtonText="@a" IsCorrect="IsThisAnswerCorrect(a)" OnCorrectAnswer="AnsweredCorrectly"></AnswerButton>
     }
+    </div>
 }
 @code {
 
