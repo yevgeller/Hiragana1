@@ -4,20 +4,18 @@
 @inject HttpClient Http
 
 <h3>Current Test</h3>
+<hr />
 @if (currentQuestion == null || currentQuestion.Id < 1)
 {
     <button class="btn btn-primary" @onclick="StartNewTest">Start Test</button>
 }
-@if (currentQuestion != null)
+else
 {
-    <div style="margin-top:100px; border: 1px solid blue;">
-        <QuizProgress CurrentQuestionNumber="currentQuestion.Id"
-                      NumberCorrectSoFar="currentQuestion.Id"
-                      TotalNumberOfQuestions="quizItems.Length"
-                      NumberOfMistakes="@mistakesQty"></QuizProgress>
-    </div>
+    <QuizProgress CurrentQuestionNumber="currentQuestion.Id"
+                  NumberCorrectSoFar="currentQuestion.Id"
+                  TotalNumberOfQuestions="quizItems.Length"
+                  NumberOfMistakes="@mistakesQty"></QuizProgress>
     <AnswerableTQ2 TestQuestion="currentQuestion" OnAnswer="AnswerHappened"></AnswerableTQ2>
-
 }
 @if (testOver)
 {
@@ -31,7 +29,7 @@
     QuestionDto[] quizItems = new QuestionDto[0];
 
     public async void StartNewTest()
-    { 
+    {
         testOver = false;
         quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>("QuestionV2") ?? new QuestionDto[0];
         if (quizItems.Any())
@@ -61,7 +59,7 @@
         //StateHasChanged();
     }
 
-        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest/1/5");
-        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest2?a=1&b=5");
-        //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest");
+    //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest/1/5");
+    //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest2?a=1&b=5");
+    //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest");
 }

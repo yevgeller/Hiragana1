@@ -1,11 +1,7 @@
 ﻿@using Hiragana1.Shared;
 @using Hiragana1.Shared.DTOs;
 
-@if (!TestQuestion.Answers.Any())
-{
-    <p><em>Loading test question...</em></p>
-}
-else
+@if (TestQuestion.Answers.Any())
 {
     <h3 class="align-content-center">@TestQuestion?.Question</h3>
     <div class="d-flex flex-row bd-highlight flex-wrap">
