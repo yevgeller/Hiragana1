@@ -1,6 +1,5 @@
 ﻿@using Hiragana1.Shared;
 @using Hiragana1.Shared.DTOs;
-<h3>Answerable TQ v2</h3>
 
 @if (!TestQuestion.Answers.Any())
 {
@@ -18,14 +17,6 @@ else
 }
 @code {
 
-    string defaultValue = "nothing";
-    string somethingHere;
-
-    private void OnInitializedAsync()
-    {
-        this.somethingHere = this.defaultValue;
-    }
-
     [Parameter]
     public QuestionDto? TestQuestion { get; set; }
 
@@ -34,11 +25,6 @@ else
     private async Task CompareAnswer(string value)
     {
         bool isCorrectAnswer = string.Compare(value, this.TestQuestion?.CorrectAnswer, true) == 0;
-
-        if (!isCorrectAnswer)
-        {
-            //disable wrong button
-        }
 
         await OnAnswer.InvokeAsync(isCorrectAnswer);
 

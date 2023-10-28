@@ -4,27 +4,21 @@
 @inject HttpClient Http
 
 <h3>Current Test</h3>
-
-<div>If no test in progress</div>
-<ul>
-    <li>Fix button display</li>
-    <li>Wire up correct/incorrect event</li>
-</ul>
 @if (currentQuestion == null || currentQuestion.Id < 1)
 {
     <button class="btn btn-primary" @onclick="StartNewTest">Start Test</button>
 }
 @if (currentQuestion != null)
 {
-    <div>Display a question</div>
-    <AnswerableTQ2 TestQuestion="currentQuestion" OnAnswer="AnswerHappened"></AnswerableTQ2>
-
     <div style="margin-top:100px; border: 1px solid blue;">
         <QuizProgress CurrentQuestionNumber="currentQuestion.Id"
                       NumberCorrectSoFar="currentQuestion.Id"
                       TotalNumberOfQuestions="quizItems.Length"
                       NumberOfMistakes="@mistakesQty"></QuizProgress>
     </div>
+    <AnswerableTQ2 TestQuestion="currentQuestion" OnAnswer="AnswerHappened"></AnswerableTQ2>
+
+
 }
 @if (testOver)
 {
