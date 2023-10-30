@@ -1,17 +1,23 @@
-﻿<h3>QuizProgress</h3>
+﻿@if (!TestIsOver)
+{
+    <h3>QuizProgress</h3>
 
-<div>
-    Question @CurrentQuestionNumber
-</div>
-<div>
-    @NumberCorrectSoFar correct out of @TotalNumberOfQuestions
-</div>
-<div>
-    Mistakes so far: @NumberOfMistakes
-</div>
+    <div>
+        Question @CurrentQuestionNumber
+    </div>
+    <div>
+        @NumberCorrectSoFar correct out of @TotalNumberOfQuestions
+    </div>
+    <div>
+        Mistakes so far: @NumberOfMistakes
+    </div>
+} else
+{
+    <h3>Test Result:</h3>
+    <div>@NumberOfMistakes out of @TotalNumberOfQuestions</div>
+}
 
-
-@code {
+    @code {
     [Parameter]
     public int CurrentQuestionNumber { get; set; } = 0;
 
@@ -23,4 +29,7 @@
 
     [Parameter]
     public int NumberOfMistakes { get; set; } = 0;
+
+    [Parameter]
+    public bool TestIsOver { get; set; } = false;
 }
