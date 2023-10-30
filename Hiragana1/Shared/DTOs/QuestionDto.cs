@@ -17,6 +17,6 @@ namespace Hiragana1.Shared.DTOs
         public string? CorrectAnswer { get; set; }
         public List<string> Answers { get; set; } = new List<string>();
 
-
+        public int PositionNumber { get; set; } = -1;
     }
 }

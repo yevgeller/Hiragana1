@@ -1,5 +1,6 @@
 ﻿using Hiragana1.Shared;
 using Hiragana1.Shared.DTOs;
+using Microsoft.AspNetCore.SignalR.Protocol;
 using QuestionnaireService;
 using SyllabaryQuizGenerator;
 
@@ -29,14 +30,16 @@ namespace Hiragana1.Server.Services
             var ret = qg.GenerateQuizItems(10);
 
             List<QuestionDto> items = new List<QuestionDto>();
-            foreach (var item in ret)
+                        
+            for(int i=0; i< items.Count; i++)
             {
                 items.Add(new QuestionDto { 
-                    Id = item.Id, 
-                    Answers = item.Answers,
-                    CorrectAnswer = item.CorrectAnswer, 
-                    NextQuizItemId = item.NextQuizItemId, 
-                    Question = item.Question 
+                    PositionNumber = i + 1,
+                    Id = items[i].Id, 
+                    Answers = items[i].Answers,
+                    CorrectAnswer = items[i].CorrectAnswer, 
+                    NextQuizItemId = items[i].NextQuizItemId, 
+                    Question = items[i].Question 
                 });
             }
 
