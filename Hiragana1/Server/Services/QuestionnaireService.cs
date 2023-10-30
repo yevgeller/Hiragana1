@@ -35,11 +35,11 @@ namespace Hiragana1.Server.Services
             {
                 items.Add(new QuestionDto { 
                     PositionNumber = i + 1,
-                    Id = items[i].Id, 
-                    Answers = items[i].Answers,
-                    CorrectAnswer = items[i].CorrectAnswer, 
-                    NextQuizItemId = items[i].NextQuizItemId, 
-                    Question = items[i].Question 
+                    Id = ret[i].Id, 
+                    Answers = ret[i].Answers,
+                    CorrectAnswer = ret[i].CorrectAnswer, 
+                    NextQuizItemId = ret[i].NextQuizItemId, 
+                    Question = ret[i].Question 
                 });
             }
 
