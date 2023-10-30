@@ -8,7 +8,6 @@ namespace QuestionnaireService
         {
             QuizGenerator qg = new QuizGenerator();
             return qg.GenerateQuizItems(10);
-
         }
     }
 }
