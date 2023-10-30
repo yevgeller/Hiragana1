@@ -31,7 +31,7 @@ namespace Hiragana1.Server.Services
 
             List<QuestionDto> items = new List<QuestionDto>();
                         
-            for(int i=0; i< items.Count; i++)
+            for(int i=0; i< ret.Count; i++)
             {
                 items.Add(new QuestionDto { 
                     PositionNumber = i + 1,
