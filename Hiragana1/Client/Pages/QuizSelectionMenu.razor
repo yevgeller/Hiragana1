@@ -67,7 +67,7 @@
 
     [Parameter]
     public bool TestInProgress { get; set; } = false;
-
+    [Parameter] public EventCallback<SelectedQuizParametersDto> OnSelectionMade { get; set; }
     private void UpdateQuizType(int val)
     {
         this.selectedQuizType = val;
@@ -75,8 +75,8 @@
 
     public async Task NotifyOfTestParameters()
     {
-        var ret =  new SelectedQuizParametersDto { NumberOfQuestions = numberOfQuestions, QuizType = (QuizType)selectedQuizType };
-        //return ret;
+        var ret = new SelectedQuizParametersDto { NumberOfQuestions = numberOfQuestions, QuizType = (QuizType)selectedQuizType };
+        await OnSelectionMade.InvokeAsync(ret);
     }
 
     private string SelectedQuizParameterSummary()

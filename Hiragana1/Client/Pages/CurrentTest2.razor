@@ -7,8 +7,8 @@
 <hr />
 @if (currentQuestion == null || currentQuestion.Id < 1)
 {
-    <QuizSelectionMenu TestInProgress="@testOver"></QuizSelectionMenu>
-    <button class="btn btn-primary" @onclick="StartNewTest">Start Test</button>
+    <QuizSelectionMenu TestInProgress="@testOver" OnSelectionMade="QuizParametersSelectionMade"></QuizSelectionMenu>
+    @* <button class="btn btn-primary" @onclick="StartNewTest">Start Test</button> *@
 }
 else
 {
@@ -29,14 +29,14 @@ else
     QuestionDto currentQuestion = new QuestionDto();
     QuestionDto[] quizItems = new QuestionDto[0];
 
-    public async void StartNewTest()
+    public async Task QuizParametersSelectionMade(SelectedQuizParametersDto parms)
     {
         testOver = false;
         quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>("QuestionV2") ?? new QuestionDto[0];
         if (quizItems.Any())
         {
             currentQuestion = quizItems.OrderBy(x => x.Id).First();
-            StateHasChanged();
+            //StateHasChanged();
         }
         else
         {
