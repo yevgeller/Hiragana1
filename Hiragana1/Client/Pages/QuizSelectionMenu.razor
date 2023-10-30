@@ -1,5 +1,6 @@
-﻿<h3>Select your quiz type</h3>
-Quiz type
+﻿@if(!TestInProgress)
+{
+<h3>Select your quiz type</h3>
 <div class="row g-3">
 
     <div class="form-check form-check-inline col-auto">
@@ -54,11 +55,18 @@ Quiz type
 <div>
     <button class="btn btn-primary"  @onclick="NotifyOfTestParameters">Start test (not yet)</button>
     noq: @numberOfQuestions,  qt: @selectedQuizType
-</div>
+    </div>
+} else
+{
+    <div>Selected Quiz Parameters: @SelectedQuizParameterSummary()</div>
+}
 
 @code {
     private int numberOfQuestions = 11;
     private int selectedQuizType = 2;
+
+    [Parameter]
+    public bool TestInProgress { get; set; } = false;
 
     private void UpdateQuizType(int val)
     {
@@ -68,5 +76,10 @@ Quiz type
     public void NotifyOfTestParameters()
     {
         var j = 1;
+    }
+
+    private string SelectedQuizParameterSummary()
+    {
+        return "";
     }
 }
