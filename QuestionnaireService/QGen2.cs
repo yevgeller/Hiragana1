@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SyllabaryQuizGenerator;
+﻿using SyllabaryQuizGenerator;
 
 namespace QuestionnaireService
 {
-    public class QGen2
+    public class QGen2      
     {
         public List<QuizItem> GetQuizItems()
         {
