@@ -73,9 +73,10 @@
         this.selectedQuizType = val;
     }
 
-    public void NotifyOfTestParameters()
+    public async Task NotifyOfTestParameters()
     {
-        var j = 1;
+        var ret =  new SelectedQuizParametersDto { NumberOfQuestions = numberOfQuestions, QuizType = (QuizType)selectedQuizType };
+        //return ret;
     }
 
     private string SelectedQuizParameterSummary()
