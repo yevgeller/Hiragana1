@@ -22,11 +22,14 @@ else
     <h2>Test is Over!</h2>
 }
 
+<QuizResultsDisplay QuizResults="quizResults"></QuizResultsDisplay>
+
 @code {
     public bool testOver = false;
     private int mistakesQty = 0;
     QuestionDto currentQuestion = new QuestionDto();
     QuestionDto[] quizItems = new QuestionDto[0];
+    List<QuizResult> quizResults = new List<QuizResult>();
 
     public async Task QuizParametersSelectionMade(SelectedQuizParametersDto parms)
     {
