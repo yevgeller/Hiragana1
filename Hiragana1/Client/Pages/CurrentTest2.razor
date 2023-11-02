@@ -14,8 +14,7 @@ else
     <QuizProgress CurrentQuestionNumber="currentQuestion.PositionNumber"
                   NumberCorrectSoFar="currentQuestion.Id"
                   TotalNumberOfQuestions="quizItems.Length"
-                  NumberOfMistakes="@mistakesQty"
-                  TestIsOver="@testOver"></QuizProgress>
+                  NumberOfMistakes="@mistakesQty"></QuizProgress>
     <AnswerableTQ2 TestQuestion="currentQuestion" OnAnswer="AnswerHappened"></AnswerableTQ2>
 }
 @if (testOver)
