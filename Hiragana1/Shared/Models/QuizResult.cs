@@ -11,10 +11,11 @@ namespace Hiragana1.Shared.Models
         public int NumberOfErrors { get; set; }
         public int NumberOfQuestions { get; set; }
         public QuizType QuizType { get; set; }
-    
+
         public string ResultString()
         {
-            return $"{NumberOfQuestions} {QuizType} questions, {NumberOfErrors} errors"; ;
+            return $"{NumberOfQuestions} {QuizType} questions, {NumberOfErrors} errors";
+        }
     
     }
 
