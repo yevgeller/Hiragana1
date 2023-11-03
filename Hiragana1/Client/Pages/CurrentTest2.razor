@@ -21,7 +21,6 @@ else
 {
     <h2>Test is Over!</h2>
 }
-
 <QuizResultsDisplay QuizResults="quizResults"></QuizResultsDisplay>
 
 @code {
@@ -54,6 +53,7 @@ else
             if (currentQuestion == null)
             {
                 testOver = true;
+                quizResults.Add(new QuizResult { NumberOfErrors = this.mistakesQty, NumberOfQuestions = this.quizItems.Count(), QuizType = QuizType.EnglishToHiragana });
             }
         }
         else

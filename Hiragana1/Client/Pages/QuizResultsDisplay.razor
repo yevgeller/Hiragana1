@@ -1,5 +1,5 @@
-﻿<h3>QuizResults</h3>
-
+﻿
+<div class="card">
 @if(!QuizResults.Any())
 {
     <div>No results yet.</div>
@@ -9,7 +9,7 @@
 {
     <div>@qr.ResultString()</div>
 }
-
+</div>
 @code {
 
     [Parameter]

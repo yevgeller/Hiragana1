@@ -27,7 +27,7 @@ namespace Hiragana1.Server.Services
         public IEnumerable<QuestionDto> GetQuizItems()
         {
             QuizGenerator qg = new QuizGenerator();
-            var ret = qg.GenerateQuizItems(10);
+            var ret = qg.GenerateQuizItems(3);
 
             List<QuestionDto> items = new List<QuestionDto>();
                         
