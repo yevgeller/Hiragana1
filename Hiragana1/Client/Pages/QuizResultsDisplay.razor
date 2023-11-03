@@ -1,19 +1,22 @@
 ﻿
 <div class="card">
-@if(!QuizResults.Any())
-{
-    <div>No results yet.</div>
-}
+    <div class="card-body">
 
-@foreach(var qr in QuizResults)
-{
-    <div>@qr.ResultString()</div>
-}
+        @if (QuizResults.Any())
+        {
+            <h5 class="card-header">Quiz Results</h5>
+            @foreach (var qr in QuizResults)
+            {
+                <p class="card-text">@qr.ResultString()</p>
+            }
+        }
+        else
+        {
+            <h5 class="card-header">No results yet.</h5>
+        }
+    </div>
 </div>
 @code {
-
     [Parameter]
     public List<QuizResult> QuizResults { get; set; }
-
-
 }
