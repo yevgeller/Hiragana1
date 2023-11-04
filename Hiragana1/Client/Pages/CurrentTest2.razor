@@ -4,11 +4,11 @@
 @inject HttpClient Http
 
 <h3>Current Test</h3>
-testOver param value: @testInProgress 
+testOver param value: @testInProgress
 <hr />
-    <QuizSelectionMenu TestInProgress="@testInProgress" OnSelectionMade="QuizParametersSelectionMade"></QuizSelectionMenu>
+<QuizSelectionMenu TestInProgress="@testInProgress" OnSelectionMade="QuizParametersSelectionMade"></QuizSelectionMenu>
 
-@if(currentQuestion != null)
+@if (testInProgress)
 {
     <QuizProgress CurrentQuestionNumber="currentQuestion.PositionNumber"
                   NumberCorrectSoFar="currentQuestion.Id"
@@ -16,9 +16,10 @@ testOver param value: @testInProgress
                   NumberOfMistakes="@mistakesQty"></QuizProgress>
     <AnswerableTQ2 TestQuestion="currentQuestion" OnAnswer="AnswerHappened"></AnswerableTQ2>
 }
-
-<QuizResultsDisplay QuizResults="quizResults"></QuizResultsDisplay>
-
+@if (quizResults.Any())
+{
+    <QuizResultsDisplay QuizResults="quizResults"></QuizResultsDisplay>
+}
 @code {
     public bool testInProgress = false;
     private int mistakesQty = 0;
