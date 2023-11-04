@@ -1,4 +1,6 @@
-﻿@if(!TestInProgress)
+﻿TestInProgress param value: @TestInProgress
+
+@if(!TestInProgress)
 {
 <h3>Select your quiz type</h3>
 <div class="row g-3">
@@ -66,7 +68,7 @@
     private int selectedQuizType = 2;
 
     [Parameter]
-    public bool TestInProgress { get; set; } = false;
+    public bool TestInProgress { get; set; } 
     [Parameter] public EventCallback<SelectedQuizParametersDto> OnSelectionMade { get; set; }
     private void UpdateQuizType(int val)
     {
