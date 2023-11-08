@@ -1,64 +1,62 @@
-﻿
-
-@if(!TestInProgress)
+﻿@if (!TestInProgress)
 {
-<h3>Select your quiz type</h3>
-<div class="row g-3">
-
-    <div class="form-check form-check-inline col-auto">
-        <input class="form-check-input" type="radio" name="q" @onchange="@(() => UpdateQuizType(2))" value="2" id="en2ka" checked>
-        <label class="form-check-label" for="en2ka">
-            a? ア!
-        </label>
-    </div>
-    <div class="form-check form-check-inline col-auto">
-        <input class="form-check-input" type="radio" name="q" @onchange="@(() => UpdateQuizType(1))" value="1" id="en2hi">
-        <label class="form-check-label" for="en2hi">
-            a? あ!
-        </label>
-    </div>
-    <div class="form-check form-check-inline col-auto">
-        <input class="form-check-input" type="radio" name="q" @onchange="@(() => UpdateQuizType(5))" value="5" id="hi2ka">
-        <label class="form-check-label" for="hi2ka">
-            あ? ア!
-        </label>
-    </div>
-    <div class="form-check form-check-inline col-auto">
-        <input class="form-check-input" type="radio" name="q" @onchange="@(() => UpdateQuizType(3))" value="3" id="hi2en">
-        <label class="form-check-label" for="hi2en">
-            あ? a!
-        </label>
-    </div>
-    <div class="form-check form-check-inline col-auto">
-        <input class="form-check-input" type="radio" name="q" @onchange="@(() => UpdateQuizType(6))" value="6" id="ka2hi">
-        <label class="form-check-label" for="ka2hi">
-            ア? あ!
-        </label>
-    </div>
-    <div class="form-check form-check-inline col-auto">
-        <input class="form-check-input" type="radio" name="q" @onchange="@(() => UpdateQuizType(4))" value="3" id="ka2en">
-        <label class="form-check-label" for="ka2en">
-            ア? a!
-        </label>
-    </div>
-    <div class="form-check form-check-inline col-auto">
-        <input class="form-check-input" type="radio" disabled name="q" @onchange="@(() => UpdateQuizType(7))" value="7" id="mix">
-        <label class="form-check-label" for="mix">
-            Mix
-        </label>
-    </div>
+    <h3>Select your quiz type</h3>
+    <div class="row g-3">
+        <div class="form-check form-check-inline col-auto">
+            <input class="form-check-input" type="radio" name="q" @onchange="@(() => UpdateQuizType(2))" value="2" id="en2ka" checked>
+            <label class="form-check-label" for="en2ka">
+                a? ア!
+            </label>
+        </div>
+        <div class="form-check form-check-inline col-auto">
+            <input class="form-check-input" type="radio" name="q" @onchange="@(() => UpdateQuizType(1))" value="1" id="en2hi">
+            <label class="form-check-label" for="en2hi">
+                a? あ!
+            </label>
+        </div>
+        <div class="form-check form-check-inline col-auto">
+            <input class="form-check-input" type="radio" name="q" @onchange="@(() => UpdateQuizType(5))" value="5" id="hi2ka">
+            <label class="form-check-label" for="hi2ka">
+                あ? ア!
+            </label>
+        </div>
+        <div class="form-check form-check-inline col-auto">
+            <input class="form-check-input" type="radio" name="q" @onchange="@(() => UpdateQuizType(3))" value="3" id="hi2en">
+            <label class="form-check-label" for="hi2en">
+                あ? a!
+            </label>
+        </div>
+        <div class="form-check form-check-inline col-auto">
+            <input class="form-check-input" type="radio" name="q" @onchange="@(() => UpdateQuizType(6))" value="6" id="ka2hi">
+            <label class="form-check-label" for="ka2hi">
+                ア? あ!
+            </label>
+        </div>
+        <div class="form-check form-check-inline col-auto">
+            <input class="form-check-input" type="radio" name="q" @onchange="@(() => UpdateQuizType(4))" value="3" id="ka2en">
+            <label class="form-check-label" for="ka2en">
+                ア? a!
+            </label>
+        </div>
+        <div class="form-check form-check-inline col-auto">
+            <input class="form-check-input" type="radio" disabled name="q" @onchange="@(() => UpdateQuizType(7))" value="7" id="mix">
+            <label class="form-check-label" for="mix">
+                Mix
+            </label>
+        </div>
     </div>
     <div class="row g-0">
-    <div class="form-outline col-sm" style="max-width:250px;">
-        <label class="form-label" for="typeNumber">Number of questions (3-50)</label>
-        <input type="number" id="typeNumber" min="3" max="50" class="form-control" @bind="@numberOfQuestions" />
+        <div class="form-outline col-sm" style="max-width:250px;">
+            <label class="form-label" for="typeNumber">Number of questions (3-50)</label>
+            <input type="number" id="typeNumber" min="3" max="50" class="form-control" @bind="@numberOfQuestions" />
+        </div>
     </div>
-</div>
-<div>
-    <button class="btn btn-primary"  @onclick="NotifyOfTestParameters">Start test (not yet)</button>
-    noq: @numberOfQuestions,  qt: @selectedQuizType
+    <div>
+        <button class="btn btn-primary" @onclick="NotifyOfTestParameters">Start test (not yet)</button>
+        noq: @numberOfQuestions,  qt: @selectedQuizType
     </div>
-} else
+}
+else
 {
     <div>Selected Quiz Parameters: @SelectedQuizParameterSummary()</div>
 }
@@ -68,7 +66,7 @@
     private int selectedQuizType = 2;
 
     [Parameter]
-    public bool TestInProgress { get; set; } 
+    public bool TestInProgress { get; set; }
     [Parameter] public EventCallback<SelectedQuizParametersDto> OnSelectionMade { get; set; }
     private void UpdateQuizType(int val)
     {
