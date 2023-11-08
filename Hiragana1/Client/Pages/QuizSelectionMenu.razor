@@ -47,22 +47,29 @@
                     </label>
                 </div>
             </div>
-            <div class="row g-0">
+           @*  <div class="row g-0 mt-1">
                 <div class="form-outline col-sm" style="max-width:250px;">
                     <label class="form-label" for="typeNumber">Number of questions (3-50)</label>
                     <input type="number" id="typeNumber" min="3" max="50" class="form-control" @bind="@numberOfQuestions" />
                 </div>
+            </div> *@
+
+            <div class="form-group row mt-2">
+                <label for="typeNumber2" class="col-sm-4 col-form-label">Number of questions (3-50):</label>
+                <div class="col-sm-3">
+                    <input type="number" id="typeNumber2" min="3" max="50" class="form-control" @bind="@numberOfQuestions" />
+                </div>
             </div>
-            <div>
-                <button class="btn btn-primary" @onclick="NotifyOfTestParameters">Start test (not yet)</button>
-                noq: @numberOfQuestions,  qt: @selectedQuizType
+           
+            <div class="mt-2">
+                <button class="btn btn-primary" @onclick="NotifyOfTestParameters">Start test</button>
             </div>
         </div>
     </div>
 }
 else
 {
-     <div class="card">
+    <div class="card">
 
         <div class="card-body">
             Selected Quiz Parameters: @SelectedQuizParameterSummary()
