@@ -4,10 +4,12 @@
     {
         <div class="card-header">Quiz Results</div>
         <div class="card-body">
+            <ol>
             @foreach (var qr in QuizResults)
             {
-                <p class="card-text">@qr.ResultString()</p>
+                <li class="card-text">@qr.ResultString()</li>
             }
+            </ol>
         </div>
     }
     else
