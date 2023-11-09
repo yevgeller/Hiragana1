@@ -10,6 +10,17 @@
         <AnswerButton ButtonText="@a" IsCorrect="IsThisAnswerCorrect(a)" OnCorrectAnswer="AnsweredCorrectly"></AnswerButton>
     }
     </div>
+    <div class="card mt-3">
+        <div class="card-header">@TestQuestion?.Question</div>
+        <div class="card-body">
+            <div class="d-flex flex-row bd-highlight flex-wrap">
+                @foreach (var a in TestQuestion?.Answers)
+                {
+                    <AnswerButton ButtonText="@a" IsCorrect="IsThisAnswerCorrect(a)" OnCorrectAnswer="AnsweredCorrectly"></AnswerButton>
+                }
+            </div>
+        </div>
+        </div>
 }
 @code {
 
