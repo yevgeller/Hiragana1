@@ -27,6 +27,7 @@
     public async Task QuizParametersSelectionMade(SelectedQuizParametersDto parms)
     {
         testInProgress = false;
+        mistakesQty = 0;
         quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>("QuestionV2") ?? new QuestionDto[0];
         if (quizItems.Any())
         {
