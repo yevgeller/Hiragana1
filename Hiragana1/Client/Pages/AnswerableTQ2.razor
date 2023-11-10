@@ -2,14 +2,7 @@
 @using Hiragana1.Shared.DTOs;
 
 @if (TestQuestion.Answers.Any())
-{
-    <h3 class="align-content-center">@TestQuestion?.Question</h3>
-    <div class="d-flex flex-row bd-highlight flex-wrap">
-    @foreach(var a in TestQuestion?.Answers)
-    {
-        <AnswerButton ButtonText="@a" IsCorrect="IsThisAnswerCorrect(a)" OnCorrectAnswer="AnsweredCorrectly"></AnswerButton>
-    }
-    </div>
+{   
     <div class="card mt-3">
         <div class="card-header text-center"><h1>@TestQuestion?.Question</h1></div>
         <div class="card-body">
