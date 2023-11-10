@@ -1,5 +1,4 @@
-﻿    <h3>QuizProgress make this better next</h3>
-
+﻿<div class="card mt-3">
     <div>
         Question @CurrentQuestionNumber
     </div>
@@ -9,8 +8,8 @@
     <div>
         Mistakes so far: @NumberOfMistakes
     </div>
-
-    @code {
+</div>
+@code {
     [Parameter]
     public int CurrentQuestionNumber { get; set; } = 0;
 
