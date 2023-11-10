@@ -67,7 +67,7 @@
             </div>
 
             <div class="mt-2">
-                <button class="btn btn-primary" @onclick="NotifyOfTestParameters">Start test</button>
+                <button class="btn btn-primary" @onclick="NotifyOfTestParameters">@StartNextButtonText()</button>
             </div>
         </div>
     </div>
@@ -89,6 +89,7 @@ else
     [Parameter]
     public bool TestInProgress { get; set; }
     [Parameter] public EventCallback<SelectedQuizParametersDto> OnSelectionMade { get; set; }
+    [Parameter] public bool IsAnother { get; set; }
     private void UpdateQuizType(int val)
     {
         this.selectedQuizType = val;
@@ -103,5 +104,11 @@ else
     private string SelectedQuizParameterSummary()
     {
         return $"a? ア!, {numberOfQuestions} questions.";
+    }
+
+    private string StartNextButtonText()
+    {
+        if (this.IsAnother) return "Start another quiz";
+        return "Start quiz";
     }
 }

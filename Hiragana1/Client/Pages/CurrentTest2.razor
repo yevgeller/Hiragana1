@@ -3,7 +3,7 @@
 @using Hiragana1.Shared.DTOs;
 @inject HttpClient Http
 
-<QuizSelectionMenu TestInProgress="@testInProgress" OnSelectionMade="QuizParametersSelectionMade"></QuizSelectionMenu>
+<QuizSelectionMenu TestInProgress="@testInProgress" OnSelectionMade="QuizParametersSelectionMade" IsAnother="@quizItems.Any()"></QuizSelectionMenu>
 
 @if (testInProgress)
 {
