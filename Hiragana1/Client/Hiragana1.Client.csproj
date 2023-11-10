@@ -12,6 +12,7 @@
     <Content Remove="Pages\Counter.razor" />
     <Content Remove="Pages\CurrentTest.razor" />
     <Content Remove="Pages\FetchData.razor" />
+    <Content Remove="Pages\QuizProgress.razor" />
     <Content Remove="Pages\SomethingOne.razor" />
   </ItemGroup>
 
