@@ -4,14 +4,18 @@
 @if (TestQuestion.Answers.Any())
 {
     <div class="card mt-3">
-        <div class="card-header text-center"><h1>@TestQuestion?.Question</h1><h5>Question @TestQuestion?.PositionNumber</h5></div>
+        <div class="card-header text-center"><h5>Question @TestQuestion?.PositionNumber</h5></div>
         <div class="card-body">
+            <div class="text-center" style="color:red;"><h1>@TestQuestion?.Question</h1></div>
             <div class="d-flex flex-row bd-highlight flex-wrap">
                 @foreach (var a in TestQuestion?.Answers)
                 {
                     <AnswerButton ButtonText="@a" IsCorrect="IsThisAnswerCorrect(a)" OnCorrectAnswer="AnsweredCorrectly"></AnswerButton>
                 }
             </div>
+        </div>
+        <div class="card-footer">
+            <h5>Mistakes so far: 3</h5>
         </div>
     </div>
 }
