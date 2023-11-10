@@ -7,11 +7,11 @@
 
 @if (testInProgress)
 {
-    <QuizProgress CurrentQuestionNumber="currentQuestion.PositionNumber"
+@*     <QuizProgress CurrentQuestionNumber="currentQuestion.PositionNumber"
                   NumberCorrectSoFar="currentQuestion.Id"
                   TotalNumberOfQuestions="quizItems.Length"
-                  NumberOfMistakes="@mistakesQty"></QuizProgress>
-    <AnswerableTQ2 TestQuestion="currentQuestion" OnAnswer="AnswerHappened"></AnswerableTQ2>
+                  NumberOfMistakes="@mistakesQty"></QuizProgress> *@
+    <AnswerableTQ2 TestQuestion="currentQuestion" OnAnswer="AnswerHappened" MistakesSoFar="mistakesQty"></AnswerableTQ2>
 }
 @if (quizResults.Any())
 {
