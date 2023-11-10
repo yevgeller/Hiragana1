@@ -11,7 +11,7 @@
                   NumberCorrectSoFar="currentQuestion.Id"
                   TotalNumberOfQuestions="quizItems.Length"
                   NumberOfMistakes="@mistakesQty"></QuizProgress> *@
-    <AnswerableTQ2 TestQuestion="currentQuestion" OnAnswer="AnswerHappened" MistakesSoFar="mistakesQty"></AnswerableTQ2>
+    <AnswerableTQ2 TestQuestion="currentQuestion" OnAnswer="AnswerHappened" MistakesSoFar="mistakesQty" TotalQuestions="@quizItems.Count()"></AnswerableTQ2>
 }
 @if (quizResults.Any())
 {

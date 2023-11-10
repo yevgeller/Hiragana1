@@ -4,7 +4,7 @@
 @if (TestQuestion.Answers.Any())
 {
     <div class="card mt-3">
-        <div class="card-header text-center"><h5>Question @TestQuestion?.PositionNumber</h5></div>
+        <div class="card-header text-center"><h5>Question @TestQuestion?.PositionNumber/@TotalQuestions</h5></div>
         <div class="card-body">
             <div class="text-center text-primary-emphasis"><h1>@TestQuestion?.Question</h1></div>
             <div class="d-flex flex-row bd-highlight flex-wrap">
@@ -26,9 +26,12 @@
 
     [Parameter]
     public QuestionDto? TestQuestion { get; set; }
-    [Parameter] public int MistakesSoFar { get; set; }
-
+    [Parameter] 
+    public int MistakesSoFar { get; set; }
+    [Parameter]
+    public int TotalQuestions { get; set; }
     [Parameter] public EventCallback<bool> OnAnswer { get; set; }
+
 
     private async Task CompareAnswer(string value)
     {
