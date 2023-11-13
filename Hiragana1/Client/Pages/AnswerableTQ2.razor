@@ -14,12 +14,17 @@
                 }
             </div>
         </div>
-        <div class="card-body">
+        <div class="card-body" style="border: red 1px solid;">
             <div class="text-center text-primary-emphasis"><h1>@TestQuestion?.Question</h1></div>
             <div class="d-flex flex-row bd-highlight flex-wrap">
                 @foreach (var a in TestQuestion?.Answers)
                 {
-                    <AnswerButton ButtonText="@a" IsCorrect="IsThisAnswerCorrect(a)" OnCorrectAnswer="AnsweredCorrectly"></AnswerButton>
+                    <button class="btn btn-info answerButton2 m-3"
+                            disabled="@IsThisAnswerDisabled(a)"
+                    @onclick="() => CompareAnswer2(a)">
+                        a
+                    </button>
+                    
                 }
             </div>
         </div>
@@ -41,8 +46,28 @@
     public int TotalQuestions { get; set; }
     [Parameter] public EventCallback<bool> OnAnswer { get; set; }
 
+    private List<string> UsedWrongAnswers;
+
+    protected override void OnInitialized()
+    {
+        this.UsedWrongAnswers = new List<string>();
+        base.OnInitialized();
+    }
+
+    private bool IsThisAnswerDisabled(string answer)
+    {
+        return this.UsedWrongAnswers.Any(x => x == answer);
+    }
 
     private async Task CompareAnswer(string value)
+    {
+        bool isCorrectAnswer = string.Compare(value, this.TestQuestion?.CorrectAnswer, true) == 0;
+
+        await OnAnswer.InvokeAsync(isCorrectAnswer);
+    }
+
+
+    private async Task CompareAnswer2(string value)
     {
         bool isCorrectAnswer = string.Compare(value, this.TestQuestion?.CorrectAnswer, true) == 0;
 
