@@ -14,11 +14,20 @@
                 }
             </div>
         </div>
+        <div class="card-body">
+            <div class="text-center text-primary-emphasis"><h1>@TestQuestion?.Question</h1></div>
+            <div class="d-flex flex-row bd-highlight flex-wrap">
+                @foreach (var a in TestQuestion?.Answers)
+                {
+                    <AnswerButton ButtonText="@a" IsCorrect="IsThisAnswerCorrect(a)" OnCorrectAnswer="AnsweredCorrectly"></AnswerButton>
+                }
+            </div>
+        </div>
         @if (MistakesSoFar > 0)
         {
             <div class="card-footer">
                 <h5>Mistakes: @MistakesSoFar</h5>
-        </div>
+            </div>
         }
     </div>
 }
@@ -26,7 +35,7 @@
 
     [Parameter]
     public QuestionDto? TestQuestion { get; set; }
-    [Parameter] 
+    [Parameter]
     public int MistakesSoFar { get; set; }
     [Parameter]
     public int TotalQuestions { get; set; }
