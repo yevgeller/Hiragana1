@@ -19,7 +19,7 @@
             <div class="d-flex flex-row bd-highlight flex-wrap">
                 @foreach (var a in TestQuestion?.Answers)
                 {
-                    <button class="btn btn-info answerButton2 m-3"
+                    <button type="button" class="btn btn-info answerButton2 m-3"
                             disabled="@IsThisAnswerDisabled(a)"
                     @onclick="() => CompareAnswer2(a)">
                         @a
