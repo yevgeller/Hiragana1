@@ -4,16 +4,18 @@
 @if (TestQuestion.Answers.Any())
 {
     <div class="card mt-3">
-        <div class="card-header text-center"><h5>Question @TestQuestion?.PositionNumber/@TotalQuestions</h5></div>
-        <div class="card-body">
-            <div class="text-center text-primary-emphasis"><h1>@TestQuestion?.Question</h1></div>
-            <div class="d-flex flex-row bd-highlight flex-wrap">
-                @foreach (var a in TestQuestion?.Answers)
-                {
-                    <AnswerButton ButtonText="@a" IsCorrect="IsThisAnswerCorrect(a)" OnCorrectAnswer="AnsweredCorrectly"></AnswerButton>
-                }
-            </div>
+        <div class="card-header text-center">
+            <h5>Question @TestQuestion?.PositionNumber/@TotalQuestions</h5>
         </div>
+        @*  <div class="card-body">
+    <div class="text-center text-primary-emphasis"><h1>@TestQuestion?.Question</h1></div>
+    <div class="d-flex flex-row bd-highlight flex-wrap">
+    @foreach (var a in TestQuestion?.Answers)
+    {
+    <AnswerButton ButtonText="@a" IsCorrect="IsThisAnswerCorrect(a)" OnCorrectAnswer="AnsweredCorrectly"></AnswerButton>
+    }
+    </div>
+    </div> *@
         <div class="card-body" style="border: red 1px solid;">
             <div class="text-center text-primary-emphasis"><h1>@TestQuestion?.Question</h1></div>
             <div class="d-flex flex-row bd-highlight flex-wrap">
@@ -21,10 +23,9 @@
                 {
                     <button type="button" class="btn btn-info answerButton2 m-3"
                             disabled="@IsThisAnswerDisabled(a)"
-                    @onclick="() => CompareAnswer2(a)">
+                            @onclick="() => CompareAnswer2(a)">
                         @a
                     </button>
-                    
                 }
             </div>
         </div>
@@ -59,18 +60,19 @@
         return this.UsedWrongAnswers.Any(x => x == answer);
     }
 
-    private async Task CompareAnswer(string value)
-    {
-        bool isCorrectAnswer = string.Compare(value, this.TestQuestion?.CorrectAnswer, true) == 0;
+    // private async Task CompareAnswer(string value)
+    // {
+    //     bool isCorrectAnswer = string.Compare(value, this.TestQuestion?.CorrectAnswer, true) == 0;
 
-        await OnAnswer.InvokeAsync(isCorrectAnswer);
-    }
+    //     await OnAnswer.InvokeAsync(isCorrectAnswer);
+    // }
 
 
     private async Task CompareAnswer2(string value)
     {
         bool isCorrectAnswer = string.Compare(value, this.TestQuestion?.CorrectAnswer, true) == 0;
-
+        if (!isCorrectAnswer)
+            UsedWrongAnswers.Add(value);
         await OnAnswer.InvokeAsync(isCorrectAnswer);
     }
 
@@ -79,10 +81,10 @@
         await OnAnswer.InvokeAsync(isCorrect);
     }
 
-    private bool IsThisAnswerCorrect(string answer)
-    {
-        return answer == TestQuestion?.CorrectAnswer;
-    }
+    // private bool IsThisAnswerCorrect(string answer)
+    // {
+    //     return answer == TestQuestion?.CorrectAnswer;
+    // }
 }
 
 
