@@ -27,7 +27,13 @@ namespace Hiragana1.Server.Controllers
         {
             logger.LogInformation("Hit Get method");
             return service.GetQuizItems();
+        }
 
+        [HttpGet]
+        public IEnumerable<QuestionDto> GetQuizWithParams(int q, Hiragana1.Shared.QuizType t)
+        {
+            logger.LogInformation($"Hit GetQuizWithParams method, {q}/{t}");
+            return service.GetQuizItems(q, t);
 
         }
     }
