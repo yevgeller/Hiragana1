@@ -1,4 +1,5 @@
 ﻿@page "/currenttest2"
+@using Hiragana1.Client.Pages.Controls
 @using Hiragana1.Shared;
 @using Hiragana1.Shared.DTOs;
 @inject HttpClient Http
@@ -7,16 +8,10 @@
 
 @if (testInProgress)
 {
-@*     <QuizProgress CurrentQuestionNumber="currentQuestion.PositionNumber"
-                  NumberCorrectSoFar="currentQuestion.Id"
-                  TotalNumberOfQuestions="quizItems.Length"
-                  NumberOfMistakes="@mistakesQty"></QuizProgress> *@
-                  <ErrorBoundary>
-        <AnswerableTQ2 TestQuestion="currentQuestion"
-                       OnAnswer="AnswerHappened"
-                       MistakesSoFar="mistakesQty"
-                       TotalQuestions="@quizItems.Count()"></AnswerableTQ2>
-                  </ErrorBoundary>
+    <AnswerableTQ2 TestQuestion="currentQuestion"
+                   OnAnswer="AnswerHappened"
+                   MistakesSoFar="mistakesQty"
+                   TotalQuestions="@quizItems.Count()"></AnswerableTQ2>
 }
 @if (quizResults.Any())
 {
@@ -35,8 +30,8 @@
         mistakesQty = 0;
         quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>($"QuestionV2/Get2?q={parms.NumberOfQuestions}&t={parms.QuizType}") ?? new QuestionDto[0];
 
-        
-        if (quizItems.Any() && !quizItems.Any(x=> x.IsIncompleteQuizItem()))
+
+        if (quizItems.Any() && !quizItems.Any(x => x.IsIncompleteQuizItem()))
         {
             currentQuestion = quizItems.OrderBy(x => x.PositionNumber).First();
             testInProgress = true;
