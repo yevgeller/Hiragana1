@@ -23,7 +23,7 @@ namespace Hiragana1.Server.Services
         {
             QuizGenerator qg = new QuizGenerator();
             (Colors)System.Enum.Parse(typeof(Colors), "Green");
-             SyllabaryQuizGenerator.QuizType adjustedType = (SyllabaryQuizGenerator.QuizType)Enum.Parse(typeof(SyllabaryQuizGenerator.QuizType), quizType.ToString()); ;
+             SyllabaryQuizGenerator.QuizType adjustedType = (SyllabaryQuizGenerator.QuizType)Enum.Parse(typeof(SyllabaryQuizGenerator.QuizType), quizType.ToString(), true); ;
             quizType;
 
             //var ret = qg.GenerateQuizItems(q, adjustedType);
