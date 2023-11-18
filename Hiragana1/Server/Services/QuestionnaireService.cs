@@ -22,12 +22,13 @@ namespace Hiragana1.Server.Services
         public IEnumerable<QuestionDto> GetQuizItems(int q, Shared.QuizType quizType)
         {
             QuizGenerator qg = new QuizGenerator();
-            (Colors)System.Enum.Parse(typeof(Colors), "Green");
-             SyllabaryQuizGenerator.QuizType adjustedType = (SyllabaryQuizGenerator.QuizType)Enum.Parse(typeof(SyllabaryQuizGenerator.QuizType), quizType.ToString(), true); ;
-            quizType;
 
-            //var ret = qg.GenerateQuizItems(q, adjustedType);
-            var ret = qg.GenerateQuizItems(q);
+             SyllabaryQuizGenerator.QuizType adjustedType = (SyllabaryQuizGenerator.QuizType)Enum.Parse(typeof(SyllabaryQuizGenerator.QuizType), quizType.ToString(), true); ;
+
+            
+
+            var ret = qg.GenerateQuizItems(q, adjustedType);
+            //var ret = qg.GenerateQuizItems(q);
             return NormalizeQuizItems(ret);
         }
 
