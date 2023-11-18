@@ -30,6 +30,7 @@ namespace Hiragana1.Server.Controllers
         }
 
         [HttpGet]
+        [Route("Get2")]
         public IEnumerable<QuestionDto> GetQuizWithParams(int q, Hiragana1.Shared.QuizType t)
         {
             logger.LogInformation($"Hit GetQuizWithParams method, {q}/{t}");
