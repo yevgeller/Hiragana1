@@ -22,10 +22,10 @@ namespace Hiragana1.Server.Services
         public IEnumerable<QuestionDto> GetQuizItems(int q, Shared.QuizType quizType)
         {
             QuizGenerator qg = new QuizGenerator();
-            SyllabaryQuizGenerator.QuizType adjustedType = (SyllabaryQuizGenerator.QuizType)quizType;
+            // SyllabaryQuizGenerator.QuizType adjustedType = (SyllabaryQuizGenerator.QuizType)quizType;
 
-            var ret = qg.GenerateQuizItems(q, adjustedType);
-
+            //var ret = qg.GenerateQuizItems(q, adjustedType);
+            var ret = qg.GenerateQuizItems(q);
             return NormalizeQuizItems(ret);
         }
 

@@ -28,9 +28,9 @@
     {
         testInProgress = false;
         mistakesQty = 0;
-        quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>("QuestionV2") ?? new QuestionDto[0];
+        //quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>("QuestionV2") ?? new QuestionDto[0];
 
-        QuestionDto[] two = await Http?.GetFromJsonAsync<QuestionDto[]>($"QuestionV2/Get2?q={parms.NumberOfQuestions}&t={parms.QuizType}");
+        quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>($"QuestionV2/Get2?q={parms.NumberOfQuestions}&t={parms.QuizType}") ?? new QuestionDto[0];
 
         //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest2?a=1&b=5");
 
