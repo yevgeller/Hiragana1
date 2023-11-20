@@ -45,7 +45,7 @@
         }
         else if (quizItems.Any(x => x.IsIncompleteQuizItem()))
         {
-            errorMessage = "Quiz Generator returned invalid data";
+            errorMessage = "Quiz Generator returned invalid data. Not all questions are complete. Please change quiz parameters and try again.";
         }
         else
         {
