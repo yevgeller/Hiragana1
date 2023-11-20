@@ -4,8 +4,11 @@
 @using Hiragana1.Shared.DTOs;
 @inject HttpClient Http
 
-<QuizSelectionMenu TestInProgress="@testInProgress" OnSelectionMade="QuizParametersSelectionMade" IsAnother="@quizItems.Any()"></QuizSelectionMenu>
+<QuizSelectionMenu TestInProgress="@testInProgress"
+                   OnSelectionMade="QuizParametersSelectionMade"
+                   IsAnother="@quizItems.Any()"></QuizSelectionMenu>
 
+<ErrorNotification ErrorMessage="@errorMessage"></ErrorNotification>
 @if (testInProgress)
 {
     <AnswerableTQ2 TestQuestion="currentQuestion"
@@ -17,15 +20,19 @@
 {
     <QuizResultsDisplay QuizResults="quizResults"></QuizResultsDisplay>
 }
+
+
 @code {
     public bool testInProgress = false;
     private int mistakesQty = 0;
+    private string errorMessage = string.Empty;
     QuestionDto currentQuestion = new QuestionDto();
     QuestionDto[] quizItems = new QuestionDto[0];
     List<QuizResult> quizResults = new List<QuizResult>();
 
     public async Task QuizParametersSelectionMade(SelectedQuizParametersDto parms)
     {
+        errorMessage = string.Empty;
         testInProgress = false;
         mistakesQty = 0;
         quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>($"QuestionV2/Get2?q={parms.NumberOfQuestions}&t={parms.QuizType}") ?? new QuestionDto[0];
@@ -35,6 +42,10 @@
         {
             currentQuestion = quizItems.OrderBy(x => x.PositionNumber).First();
             testInProgress = true;
+        }
+        else if (quizItems.Any(x => x.IsIncompleteQuizItem()))
+        {
+            errorMessage = "Quiz Generator returned invalid data";
         }
         else
         {
