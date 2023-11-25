@@ -107,10 +107,10 @@ a, .btn-link {
     font-size: 3em;
 }
 
-.row {
+/*.row {*/
     /*background: red;*/
-    overflow: hidden;
+    /*overflow: hidden;
     height: 100%;
     z-index: 2;
     opacity: 0.3;
-}
+}*/
