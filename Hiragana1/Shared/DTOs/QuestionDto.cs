@@ -22,7 +22,6 @@ namespace Hiragana1.Shared.DTOs
         public bool IsCompleteQuizItem()
         {
             return Id > 0 && 
-                NextQuizItemId > 0 && 
                 !string.IsNullOrEmpty(Question) &&
                 !string.IsNullOrEmpty(CorrectAnswer) && 
                 Answers.Any() &&

@@ -37,5 +37,12 @@ namespace Hiragana1.Server.Controllers
             return service.GetQuizItems(q, t);
 
         }
+
+        [HttpGet]
+        [Route("GetTest")]
+        public bool GetTest()
+        {
+            return true;
+        }
     }
 }

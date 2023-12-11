@@ -37,6 +37,7 @@
         mistakesQty = 0;
         quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>($"QuestionV2/Get2?q={parms.NumberOfQuestions}&t={parms.QuizType}") ?? new QuestionDto[0];
 
+        var bad = quizItems.Where(x => x.IsIncompleteQuizItem()).ToList();
 
         if (quizItems.Any() && !quizItems.Any(x => x.IsIncompleteQuizItem()))
         {
