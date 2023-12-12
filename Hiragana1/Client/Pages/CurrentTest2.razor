@@ -21,6 +21,9 @@
     <QuizResultsDisplay QuizResults="quizResults"></QuizResultsDisplay>
 }
 
+<button @onclick="@testController"></button>
+
+<div>@callSucceeded</div>
 
 @code {
     public bool testInProgress = false;
@@ -29,29 +32,41 @@
     QuestionDto currentQuestion = new QuestionDto();
     QuestionDto[] quizItems = new QuestionDto[0];
     List<QuizResult> quizResults = new List<QuizResult>();
+    private bool callSucceeded = false;
+
+    public async Task testController()
+    {
+        callSucceeded = await Http?.GetFromJsonAsync<bool>("QuestionV2/GetTest")!;
+    }
 
     public async Task QuizParametersSelectionMade(SelectedQuizParametersDto parms)
     {
-        errorMessage = string.Empty;
-        testInProgress = false;
-        mistakesQty = 0;
-        quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>($"QuestionV2/Get2?q={parms.NumberOfQuestions}&t={parms.QuizType}") ?? new QuestionDto[0];
+        try
+        {
+            errorMessage = string.Empty;
+            testInProgress = false;
+            mistakesQty = 0;
+            //callSucceeded = await Http?.GetFromJsonAsync<bool>("QuestionV2/GetTest")!;
+            quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>($"QuestionV2/Get2?q={parms.NumberOfQuestions}&t={parms.QuizType}") ?? new QuestionDto[0];
 
-        var bad = quizItems.Where(x => x.IsIncompleteQuizItem()).ToList();
+            var bad = quizItems.Where(x => x.IsIncompleteQuizItem()).ToList();
 
-        if (quizItems.Any() && !quizItems.Any(x => x.IsIncompleteQuizItem()))
-        {
-            currentQuestion = quizItems.OrderBy(x => x.PositionNumber).First();
-            testInProgress = true;
+            if (quizItems.Any() && !quizItems.Any(x => x.IsIncompleteQuizItem()))
+            {
+                currentQuestion = quizItems.OrderBy(x => x.PositionNumber).First();
+                testInProgress = true;
+            }
+            else if (quizItems.Any(x => x.IsIncompleteQuizItem()))
+            {
+                errorMessage = "Quiz Generator returned invalid data. Not all questions are complete. Please change quiz parameters and try again.";
+            }
+            else
+            {
+                errorMessage = "No questions returned from Controller";
+            }
         }
-        else if (quizItems.Any(x => x.IsIncompleteQuizItem()))
-        {
-            errorMessage = "Quiz Generator returned invalid data. Not all questions are complete. Please change quiz parameters and try again.";
-        }
-        else
-        {
-            errorMessage = "No questions returned from Controller";
-        }
+        catch (Exception ex)
+        { Console.WriteLine(ex.Message); }
     }
 
     private void AnswerHappened(bool isCorrect)
