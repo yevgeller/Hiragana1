@@ -42,6 +42,7 @@ namespace Hiragana1.Server.Controllers
         [Route("GetTest")]
         public bool GetTest()
         {
+            //test
             return true;
         }
     }
