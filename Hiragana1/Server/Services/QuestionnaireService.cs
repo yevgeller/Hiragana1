@@ -61,8 +61,3 @@ namespace Hiragana1.Server.Services
         }
     }
 }
-   //public IEnumerable<QuestionV1> GetNewQuestionnaire(int numberOfQuestions, QuizType questionType)
-        //{
-        //    QuestionnaireGenerator generator = new QuestionnaireGenerator();
-        //    return generator.GetNewTest2(testType: QuizType.EnglishToHiragana, 5);
-        //}
