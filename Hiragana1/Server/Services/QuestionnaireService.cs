@@ -26,7 +26,7 @@ namespace Hiragana1.Server.Services
              SyllabaryQuizGenerator.QuizType adjustedType = (SyllabaryQuizGenerator.QuizType)Enum.Parse(typeof(SyllabaryQuizGenerator.QuizType), quizType.ToString(), true); ;
 
 
-            //test
+            //test again
             var ret = qg.GenerateQuizItems(q, adjustedType);
             //var ret = qg.GenerateQuizItems(q);
             return NormalizeQuizItems(ret);
