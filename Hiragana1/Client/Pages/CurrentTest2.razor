@@ -45,8 +45,6 @@
             //callSucceeded = await Http?.GetFromJsonAsync<bool>("QuestionV2/GetTest")!;
             quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>($"QuestionV2/Get2?q={parms.NumberOfQuestions}&t={parms.QuizType}") ?? new QuestionDto[0];
 
-            var bad = quizItems.Where(x => x.IsIncompleteQuizItem()).ToList();
-
             if (quizItems.Any() && !quizItems.Any(x => x.IsIncompleteQuizItem()))
             {
                 currentQuestion = quizItems.OrderBy(x => x.PositionNumber).First();
@@ -86,3 +84,11 @@
     //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest2?a=1&b=5");
     //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest");
 }
+
+                @*
+                    Todo: quiz items statistics
+                    maybe a control that is aware of the entire syllabary
+                    send it a number for good or bad and it displays in good or bad section
+                    probably an endless mode
+                    need to do all combinations first
+                *@
