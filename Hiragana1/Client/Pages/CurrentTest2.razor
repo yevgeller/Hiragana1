@@ -69,11 +69,14 @@
     {
         if (isCorrect)
         {
-            currentQuestion = quizItems.Where(q => q.Id == currentQuestion.NextQuizItemId).FirstOrDefault();
+            currentQuestion = quizItems!.Where(q => q.Id == currentQuestion.NextQuizItemId!).FirstOrDefault();
             if (currentQuestion == null)
             {
                 testInProgress = false;
-                quizResults.Add(new QuizResult { NumberOfErrors = this.mistakesQty, NumberOfQuestions = this.currentQuizParameters.NumberOfQuestions, QuizType = currentQuizParameters.QuizType });
+                quizResults.Add(new QuizResult { NumberOfErrors = this.mistakesQty, 
+                    NumberOfQuestions = this.currentQuizParameters.NumberOfQuestions, 
+                    QuizType = currentQuizParameters.QuizType 
+                });
             }
         }
         else
