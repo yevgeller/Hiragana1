@@ -25,6 +25,7 @@
     public bool testInProgress = false;
     private int mistakesQty = 0;
     private string errorMessage = string.Empty;
+    private SelectedQuizParametersDto currentQuizParameters = new SelectedQuizParametersDto();
     QuestionDto currentQuestion = new QuestionDto();
     QuestionDto[] quizItems = new QuestionDto[0];
     List<QuizResult> quizResults = new List<QuizResult>();
@@ -39,6 +40,7 @@
     {
         try
         {
+            currentQuizParameters = new SelectedQuizParametersDto { NumberOfQuestions=  parms.NumberOfQuestions, QuizType = parms.QuizType };
             errorMessage = string.Empty;
             testInProgress = false;
             mistakesQty = 0;
@@ -71,7 +73,7 @@
             if (currentQuestion == null)
             {
                 testInProgress = false;
-                quizResults.Add(new QuizResult { NumberOfErrors = this.mistakesQty, NumberOfQuestions = this.quizItems.Count(), QuizType = QuizType.EnglishToHiragana });
+                quizResults.Add(new QuizResult { NumberOfErrors = this.mistakesQty, NumberOfQuestions = this.currentQuizParameters.NumberOfQuestions, QuizType = currentQuizParameters.QuizType });
             }
         }
         else
