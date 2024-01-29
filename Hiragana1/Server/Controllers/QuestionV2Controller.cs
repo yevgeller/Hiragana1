@@ -10,7 +10,7 @@ namespace Hiragana1.Server.Controllers
     public class QuestionV2Controller : Controller
     {
         private readonly ILogger<QuestionV2Controller> logger;
-        private readonly IQuestionnaireService service = new Services.QuestionnaireService();
+        private readonly IQuestionnaireService service;// = new Services.QuestionnaireService();
         public QuestionV2Controller(ILogger<QuestionV2Controller> logger, IQuestionnaireService _service)
         {
             this.logger = logger;
