@@ -2,12 +2,12 @@
 {
     public enum QuizType
     {
-        EnglishToHiragana = 1,
-        EnglishToKatakana = 2,
-        HiraganaToEnglish = 3,
-        KatakanaToEnglish = 4,
-        HiraganaToKatakana = 5,
-        KatakanaToHiragana = 6,
-        Random = 7
+        TransliterationToHiragana = 0,
+        TransliterationToKatakana = 1,
+        HiraganaToTransliteration = 2,
+        KatakanaToTransliteration = 3,
+        HiraganaToKatakana = 4,
+        KatakanaToHiragana = 5,
+        Random = 6
     }
 }
