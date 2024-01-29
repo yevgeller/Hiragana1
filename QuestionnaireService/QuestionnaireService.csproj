@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SyllabaryQuizGenerator" Version="2024.1.7.1536" />
+    <PackageReference Include="SyllabaryQuizGenerator" Version="2024.1.26.1555" />
   </ItemGroup>
 
   <ItemGroup>
