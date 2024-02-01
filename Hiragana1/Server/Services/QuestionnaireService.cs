@@ -43,7 +43,8 @@ namespace Hiragana1.Server.Services
                     Answers = input[i].Answers,
                     CorrectAnswer = input[i].CorrectAnswer,
                     NextQuizItemId = input[i].NextQuizItemId,
-                    Question = input[i].Question
+                    Question = input[i].Question,
+                    OrdinalNumber = input[i].OrdinalNumber
                 });
             }
 

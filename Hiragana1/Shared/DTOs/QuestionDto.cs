@@ -18,6 +18,7 @@ namespace Hiragana1.Shared.DTOs
         public List<string> Answers { get; set; } = new List<string>();
 
         public int PositionNumber { get; set; } = -1;
+        public int OrdinalNumber { get; set; }
 
         public bool IsCompleteQuizItem()
         {

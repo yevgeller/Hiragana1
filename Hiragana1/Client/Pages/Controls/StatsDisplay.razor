@@ -1,0 +1,16 @@
+﻿<div class="card">
+<h3>@Header</h3>
+
+@foreach(var i in @Numbers)
+{
+    <div>@i .</div>
+}
+</div>
+@code {
+    [Parameter]
+    public string Header { get; set; } = "Correct answers";
+
+    [Parameter]
+    public List<int> Numbers { get; set; } = new List<int>();
+
+}

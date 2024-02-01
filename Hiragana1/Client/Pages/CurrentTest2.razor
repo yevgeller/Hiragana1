@@ -12,14 +12,17 @@
 @if (testInProgress)
 {
     <AnswerableTQ2 TestQuestion="currentQuestion"
-                   OnAnswer="AnswerHappened"
-                   MistakesSoFar="mistakesQty"
-                   TotalQuestions="@quizItems.Count()"></AnswerableTQ2>
+    OnAnswer="AnswerHappened"
+    MistakesSoFar="mistakesQty"
+    TotalQuestions="@quizItems.Count()"></AnswerableTQ2>
 }
 @if (quizResults.Any())
 {
     <QuizResultsDisplay QuizResults="quizResults"></QuizResultsDisplay>
 }
+
+<StatsDisplay Header="Wrong" Numbers="@Correct" />
+<StatsDisplay Header="Correct" Numbers="@Incorrect" />
 
 @code {
     public bool testInProgress = false;
@@ -29,6 +32,9 @@
     QuestionDto currentQuestion = new QuestionDto();
     QuestionDto[] quizItems = new QuestionDto[0];
     List<QuizResult> quizResults = new List<QuizResult>();
+    List<int> Correct = new List<int>{1, 2, 3};
+    List<int> Incorrect = new List<int>(){10, 11, 12};
+
     private bool callSucceeded = false;
 
     public async Task testController()
@@ -83,6 +89,12 @@
             mistakesQty++;
 
         StateHasChanged();
+    }
+
+    private void AnswerHappened2(int pickedCharacterUniqueId)
+    {
+       // if(currentQuestion.)
+        
     }
 
     //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest/1/5");

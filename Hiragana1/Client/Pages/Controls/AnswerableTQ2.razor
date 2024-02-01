@@ -16,8 +16,8 @@
                 {
                             <button type="button" class="btn btn-info answerButton2 m-3"
                                     disabled="@IsThisAnswerDisabled(answer)"
-                            @onclick="() => CompareAnswer(answer)">
-                        @answer
+                                    @onclick="() => CompareAnswer(answer)">
+                            @answer
                             </button>
                 }
                 </div>
@@ -39,8 +39,10 @@
     [Parameter]
     public int TotalQuestions { get; set; }
     [Parameter] public EventCallback<bool> OnAnswer { get; set; }
+    [Parameter] public EventCallback<int> OnCorrectAnswer { get; set; }
+    [Parameter] public EventCallback<int> OnIncorrectAnswer { get; set; }
 
-    private List<string> UsedWrongAnswers;
+    private List<string> UsedWrongAnswers = new List<string>();
 
     protected override void OnInitialized()
     {
@@ -61,10 +63,10 @@
         await OnAnswer.InvokeAsync(isCorrectAnswer);
     }
 
-    private async Task AnsweredCorrectly(bool isCorrect)
-    {
-        await OnAnswer.InvokeAsync(isCorrect);
-    }
+    // private async Task AnsweredCorrectly(bool isCorrect)
+    // {
+    //     await OnAnswer.InvokeAsync(isCorrect);
+    // }
 }
 
 
