@@ -19,6 +19,11 @@ namespace Hiragana1.Server.Services
 
         }
 
+        public IEnumerable<SyllabaryDTO> GetAllCharacters()
+        {
+            return new List<SyllabaryDTO>();
+        }
+
         public IEnumerable<QuestionDto> GetQuizItems(int q, Shared.QuizType quizType)
         {
             QuizGenerator qg = new QuizGenerator();
@@ -29,7 +34,6 @@ namespace Hiragana1.Server.Services
             //var ret = qg.GenerateQuizItems(q);
             return NormalizeQuizItems(ret);
         }
-
         private List<QuestionDto> NormalizeQuizItems(List<QuizItem> input)
         {
             List<QuestionDto> items = new List<QuestionDto>();
@@ -49,8 +53,7 @@ namespace Hiragana1.Server.Services
             }
 
             return items;
-        }
-        
+        }        
         public IEnumerable<QuestionDto> GetQuizItems()
         {
             QuizGenerator qg = new QuizGenerator();

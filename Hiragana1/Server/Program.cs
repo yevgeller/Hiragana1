@@ -11,7 +11,8 @@ namespace Hiragana1
 
             // Add services to the container.
 
-            builder.Services.AddSingleton<IQuestionnaireService, Server.Services.QuestionnaireService>();
+            //builder.Services.AddSingleton<IQuestionnaireService, Server.Services.QuestionnaireService>();
+            //builder.Services.AddSingleton<IQuestionnaireGenerator, SyllabaryQuizGenerator.QuizGenerator>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
