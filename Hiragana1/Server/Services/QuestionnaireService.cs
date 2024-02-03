@@ -24,7 +24,22 @@ namespace Hiragana1.Server.Services
 
             var result = gq.GetAllSyllabaryCharacters();
 
-            return new List<SyllabaryDTO>();
+            var all = new List<SyllabaryDTO>();
+
+            foreach(SyllabaryCharacter s in result)
+            {
+                all.Add(new SyllabaryDTO
+                {
+                    Hiragana = s.Hiragana,
+                    Katakana = s.Katakana,
+                    Transliteration = s.Transliteration,
+                    IsDigraph = s.IsDigraph,
+                    IsWithDiacritics = s.IsWithDiacritics,
+                    UniqueId = s.UniqueId
+                });
+            }
+
+            return all;
         }
 
         public IEnumerable<QuestionDto> GetQuizItems(int q, Shared.QuizType quizType)
