@@ -8,7 +8,6 @@ namespace Hiragana1.Server.Services
 {
     public interface IQuestionnaireService
     {
-        //IEnumerable<QuestionV1> GetNewQuestionnaire(int numberOfQuestions, QuizType questionType);
         IEnumerable<QuestionDto> GetQuizItems();
         IEnumerable<QuestionDto> GetQuizItems(int q, Hiragana1.Shared.QuizType quizType);
     }
@@ -35,7 +34,7 @@ namespace Hiragana1.Server.Services
             SyllabaryQuizGenerator.QuizType adjustedType = (SyllabaryQuizGenerator.QuizType)Enum.Parse(typeof(SyllabaryQuizGenerator.QuizType), quizType.ToString(), true); ;
 
             var ret = qg.GenerateQuizItems(q, adjustedType);
-            //var ret = qg.GenerateQuizItems(q);
+
             return NormalizeQuizItems(ret);
         }
         private List<QuestionDto> NormalizeQuizItems(List<QuizItem> input)
