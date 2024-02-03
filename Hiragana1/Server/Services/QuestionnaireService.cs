@@ -21,6 +21,10 @@ namespace Hiragana1.Server.Services
 
         public IEnumerable<SyllabaryDTO> GetAllCharacters()
         {
+            QuizGenerator gq = new QuizGenerator();
+
+            var result = gq.GetAllSyllabaryCharacters();
+
             return new List<SyllabaryDTO>();
         }
 
