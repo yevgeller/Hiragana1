@@ -39,6 +39,15 @@ namespace Hiragana1.Server.Controllers
         }
 
         [HttpGet]
+        [Route("GetV2")]
+        public IEnumerable<QuestionDto> GetQuizV2WithParams(int q, Hiragana1.Shared.QuizType t)
+        {
+            logger.LogInformation($"Hit GetQuizV2WithParams method, {q}/{t}");
+            return service.GetQuizItems(q, t);
+
+        }
+
+        [HttpGet]
         [Route("GetTest")]
         public bool GetTest()
         {
