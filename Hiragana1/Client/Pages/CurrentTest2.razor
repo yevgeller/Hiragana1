@@ -29,8 +29,8 @@
     private int mistakesQty = 0;
     private string errorMessage = string.Empty;
     private SelectedQuizParametersDto currentQuizParameters = new SelectedQuizParametersDto();
-    QuestionDto currentQuestion = new QuestionDto();
-    QuestionDto[] quizItems = new QuestionDto[0];
+    QuestionDTO currentQuestion = new QuestionDTO();
+    QuestionDTO[] quizItems = new QuestionDTO[0];
     List<QuizResult> quizResults = new List<QuizResult>();
     List<int> Correct = new List<int>{1, 2, 3};
     List<int> Incorrect = new List<int>(){10, 11, 12};
@@ -51,7 +51,7 @@
             testInProgress = false;
             mistakesQty = 0;
             //callSucceeded = await Http?.GetFromJsonAsync<bool>("QuestionV2/GetTest")!;
-            quizItems = await Http?.GetFromJsonAsync<QuestionDto[]>($"QuestionV2/Get2?q={parms.NumberOfQuestions}&t={parms.QuizType}") ?? new QuestionDto[0];
+            quizItems = await Http?.GetFromJsonAsync<QuestionDTO[]>($"QuestionV2/Get2?q={parms.NumberOfQuestions}&t={parms.QuizType}") ?? new QuestionDTO[0];
 
             if (quizItems.Any() && !quizItems.Any(x => x.IsIncompleteQuizItem()))
             {
