@@ -8,8 +8,8 @@ namespace Hiragana1.Server.Services
 {
     public interface IQuestionnaireService
     {
-        IEnumerable<QuestionDto> GetQuizItems();
-        IEnumerable<QuestionDto> GetQuizItems(int q, Hiragana1.Shared.QuizType quizType);
+        IEnumerable<QuestionDTO> GetQuizItems();
+        IEnumerable<QuestionDTO> GetQuizItems(int q, Hiragana1.Shared.QuizType quizType);
     }
     public class QuestionnaireService : IQuestionnaireService
     {
@@ -18,17 +18,17 @@ namespace Hiragana1.Server.Services
 
         }
 
-        public IEnumerable<SyllabaryDTO> GetAllCharacters()
+        private IEnumerable<SyllabaryCharacterDTO> GetAllCharacters()
         {
             QuizGenerator gq = new QuizGenerator();
 
             var result = gq.GetAllSyllabaryCharacters();
 
-            var all = new List<SyllabaryDTO>();
+            var all = new List<SyllabaryCharacterDTO>();
 
             foreach(SyllabaryCharacter s in result)
             {
-                all.Add(new SyllabaryDTO
+                all.Add(new SyllabaryCharacterDTO
                 {
                     Hiragana = s.Hiragana,
                     Katakana = s.Katakana,
@@ -42,7 +42,30 @@ namespace Hiragana1.Server.Services
             return all;
         }
 
-        public IEnumerable<QuestionDto> GetQuizItems(int q, Shared.QuizType quizType)
+        public IEnumerable<QuizItemDTO> GetQuizItemsV2(int q, Shared.QuizType quizType, int answersCount)
+        {
+            //QuizGenerator gq = new QuizGenerator();
+            var all = GetAllCharacters().ToList();
+            Random r = new Random();
+            for(int i = 0; i< q; i++)
+            {
+                QuizItemDTO item = new QuizItemDTO { Id = i, NextQuizItemId = (i<(q-1) ? (i+1) : 0) };
+                for (int j = 0; j < answersCount; j++)
+                {
+                    var sc = new SyllabaryCharacterDTO {  };
+                    //var unused = all.Where()
+                    do
+                    {
+                        int position = r.Next(all.Count());
+                        sc = all[position];
+                    } while (item.Characters.Any(x => x.UniqueId == sc.UniqueId));
+
+                    item.Characters.Add(sc);
+                }
+            }
+        }
+
+        public IEnumerable<QuestionDTO> GetQuizItems(int q, Shared.QuizType quizType)
         {
             QuizGenerator qg = new QuizGenerator();
 
@@ -52,13 +75,13 @@ namespace Hiragana1.Server.Services
 
             return NormalizeQuizItems(ret);
         }
-        private List<QuestionDto> NormalizeQuizItems(List<QuizItem> input)
+        private List<QuestionDTO> NormalizeQuizItems(List<QuizItem> input)
         {
-            List<QuestionDto> items = new List<QuestionDto>();
+            List<QuestionDTO> items = new List<QuestionDTO>();
 
             for (int i = 0; i < input.Count; i++)
             {
-                items.Add(new QuestionDto
+                items.Add(new QuestionDTO
                 {
                     PositionNumber = i + 1,
                     Id = input[i].Id,
@@ -72,7 +95,7 @@ namespace Hiragana1.Server.Services
 
             return items;
         }        
-        public IEnumerable<QuestionDto> GetQuizItems()
+        public IEnumerable<QuestionDTO> GetQuizItems()
         {
             QuizGenerator qg = new QuizGenerator();
             var ret = qg.GenerateQuizItems(3);
