@@ -23,7 +23,7 @@ namespace Hiragana1.Server.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<QuestionDto> Get()
+        public IEnumerable<QuestionDTO> Get()
         {
             logger.LogInformation("Hit Get method");
             return service.GetQuizItems();
@@ -31,7 +31,7 @@ namespace Hiragana1.Server.Controllers
 
         [HttpGet]
         [Route("Get2")]
-        public IEnumerable<QuestionDto> GetQuizWithParams(int q, Hiragana1.Shared.QuizType t)
+        public IEnumerable<QuestionDTO> GetQuizWithParams(int q, Hiragana1.Shared.QuizType t)
         {
             logger.LogInformation($"Hit GetQuizWithParams method, {q}/{t}");
             return service.GetQuizItems(q, t);
@@ -40,7 +40,7 @@ namespace Hiragana1.Server.Controllers
 
         [HttpGet]
         [Route("GetV2")]
-        public IEnumerable<QuestionDto> GetQuizV2WithParams(int q, Hiragana1.Shared.QuizType t)
+        public IEnumerable<QuestionDTO> GetQuizV2WithParams(int q, Hiragana1.Shared.QuizType t)
         {
             logger.LogInformation($"Hit GetQuizV2WithParams method, {q}/{t}");
             return service.GetQuizItems(q, t);
