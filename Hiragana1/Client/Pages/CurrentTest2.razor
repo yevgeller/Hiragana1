@@ -21,9 +21,6 @@
     <QuizResultsDisplay QuizResults="quizResults"></QuizResultsDisplay>
 }
 
-<StatsDisplay Header="Wrong" Numbers="@Correct" />
-<StatsDisplay Header="Correct" Numbers="@Incorrect" />
-
 @code {
     public bool testInProgress = false;
     private int mistakesQty = 0;
@@ -32,8 +29,6 @@
     QuestionDTO currentQuestion = new QuestionDTO();
     QuestionDTO[] quizItems = new QuestionDTO[0];
     List<QuizResult> quizResults = new List<QuizResult>();
-    List<int> Correct = new List<int>{1, 2, 3};
-    List<int> Incorrect = new List<int>(){10, 11, 12};
 
     private bool callSucceeded = false;
 
@@ -90,21 +85,4 @@
 
         StateHasChanged();
     }
-
-    private void AnswerHappened2(int pickedCharacterUniqueId)
-    {
-       // if(currentQuestion.)
-        
-    }
-
-    //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest/1/5");
-    //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest2?a=1&b=5");
-    //questions = await Http.GetFromJsonAsync<QuestionV1[]>("QuestionV1/NewTest");
 }
-
-                @*
-                    Todo: quiz items statistics
-                    maybe a control that is aware of the entire syllabary
-                    send it a number for good or bad and it displays in good or bad section
-                    probably an endless mode
-                *@
