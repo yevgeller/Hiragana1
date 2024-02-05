@@ -40,10 +40,10 @@ namespace Hiragana1.Server.Controllers
 
         [HttpGet]
         [Route("GetV2")]
-        public IEnumerable<QuestionDTO> GetQuizV2WithParams(int q, Hiragana1.Shared.QuizType t)
+        public IEnumerable<QuizItemDTO> GetQuizV2WithParams(int q, Hiragana1.Shared.QuizType t, int a)
         {
             logger.LogInformation($"Hit GetQuizV2WithParams method, {q}/{t}");
-            return service.GetQuizItems(q, t);
+            return service.GetQuizItemsV2(q, t, a);
 
         }
 
