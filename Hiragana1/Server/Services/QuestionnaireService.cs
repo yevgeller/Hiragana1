@@ -11,6 +11,7 @@ namespace Hiragana1.Server.Services
     {
         IEnumerable<QuestionDTO> GetQuizItems();
         IEnumerable<QuestionDTO> GetQuizItems(int q, Hiragana1.Shared.QuizType quizType);
+        IEnumerable<QuizItemDTO> GetQuizItemsV2(int q, Shared.QuizType quizType, int answersCount);
     }
     public class QuestionnaireService : IQuestionnaireService
     {
@@ -62,7 +63,6 @@ namespace Hiragana1.Server.Services
                         candidateId = all[position].UniqueId;
                     } while (item.Characters.Any(x => x.UniqueId == candidateId));
 
-
                     item.Characters.Add(new SyllabaryCharacterDTO
                     {
                         Hiragana = all[position].Hiragana,
@@ -73,7 +73,7 @@ namespace Hiragana1.Server.Services
                         IsWithDiacritics = all[position].IsWithDiacritics
                     });
                 }
-                //result.Add(item);
+                result.Add(item);
             }
             
             return result; 
