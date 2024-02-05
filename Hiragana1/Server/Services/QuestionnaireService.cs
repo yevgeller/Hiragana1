@@ -1,5 +1,6 @@
 ﻿using Hiragana1.Shared;
 using Hiragana1.Shared.DTOs;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.SignalR.Protocol;
 using QuestionnaireService;
 using SyllabaryQuizGenerator;
@@ -45,6 +46,7 @@ namespace Hiragana1.Server.Services
         public IEnumerable<QuizItemDTO> GetQuizItemsV2(int q, Shared.QuizType quizType, int answersCount)
         {
             //QuizGenerator gq = new QuizGenerator();
+            var result = new List<QuizItemDTO>();
             var all = GetAllCharacters().ToList();
             Random r = new Random();
             for(int i = 0; i< q; i++)
@@ -53,16 +55,28 @@ namespace Hiragana1.Server.Services
                 for (int j = 0; j < answersCount; j++)
                 {
                     var sc = new SyllabaryCharacterDTO {  };
-                    //var unused = all.Where()
+                    int candidateId = -1, position = -1;
                     do
                     {
-                        int position = r.Next(all.Count());
-                        sc = all[position];
-                    } while (item.Characters.Any(x => x.UniqueId == sc.UniqueId));
+                        position = r.Next(all.Count());
+                        candidateId = all[position].UniqueId;
+                    } while (item.Characters.Any(x => x.UniqueId == candidateId));
 
-                    item.Characters.Add(sc);
+
+                    item.Characters.Add(new SyllabaryCharacterDTO
+                    {
+                        Hiragana = all[position].Hiragana,
+                        Katakana = all[position].Katakana,
+                        Transliteration = all[position].Transliteration,
+                        UniqueId = all[position].UniqueId,
+                        IsDigraph = all[position].IsDigraph,
+                        IsWithDiacritics = all[position].IsWithDiacritics
+                    });
                 }
+                //result.Add(item);
             }
+            
+            return result; 
         }
 
         public IEnumerable<QuestionDTO> GetQuizItems(int q, Shared.QuizType quizType)
