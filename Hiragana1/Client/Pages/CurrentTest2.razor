@@ -45,7 +45,6 @@
             errorMessage = string.Empty;
             testInProgress = false;
             mistakesQty = 0;
-            //callSucceeded = await Http?.GetFromJsonAsync<bool>("QuestionV2/GetTest")!;
             quizItems = await Http?.GetFromJsonAsync<QuestionDTO[]>($"QuestionV2/Get2?q={parms.NumberOfQuestions}&t={parms.QuizType}") ?? new QuestionDTO[0];
 
             if (quizItems.Any() && !quizItems.Any(x => x.IsIncompleteQuizItem()))
