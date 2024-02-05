@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Hiragana1.Shared.DTOs
 {
     [DebuggerDisplay("Id:{Id};NextId:{NextQuizItemId}")]
-    public class QuestionDto
+    public class QuestionDTO
     {
         public int Id { get; set; } = 0;
         public int NextQuizItemId { get; set; } = 0;
